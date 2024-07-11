@@ -1,13 +1,22 @@
 import LandingPageNav from "./navigation";
 import "./landing.scss";
 import Button from "@/components/button";
+import { CTA, features_data, FollowUp, images } from "../../utils";
+import Footer from "../../components/footer";
 
 export default function LandingPage() {
   return (
     <div className="landing">
       <LandingPageNav />
       <LandingPageHero />
-      <LandingFollowUp />
+      <LandingFollowUp>
+        <FollowUp />
+      </LandingFollowUp>
+      <LandingFeatures />
+      <LandingFollowUp>
+        <CTA />
+      </LandingFollowUp>
+      <Footer />
     </div>
   );
 }
@@ -43,24 +52,35 @@ const LandingPageHero = () => {
   );
 };
 
-const LandingFollowUp = () => {
+const LandingFollowUp = ({ children }) => {
   return (
     <div className="landing-followup">
-      <div>
-        <span>
-          Manage energy efficiently
-          <i class="material-symbols-outlined">lightbulb</i>
-        </span>
-        <span>
-          Deploy globally
-          <i class="material-symbols-outlined">language</i>
-        </span>
-        <span>
-          Continuously optimize for sustainability
-          <i class="material-symbols-outlined">cycle</i>
-        </span>
-      </div>
+      <div>{children}</div>
     </div>
   );
 };
 
+const LandingFeatures = () => {
+  return (
+    <div className="landing-features">
+      {features_data.map((feature, index) => (
+        <FeaturesCard key={index} idx={index} {...feature} />
+      ))}
+    </div>
+  );
+};
+
+const FeaturesCard = ({ idx, icon, title, description, image }) => {
+  return (
+    <div className="features-card">
+      <h2>
+        <span class="material-symbols-outlined">{icon}</span>
+        {title}
+      </h2>
+      <p>{description}</p>
+      <span>
+        <img src={images[idx]} alt={title} draggable="false" />
+      </span>
+    </div>
+  );
+};

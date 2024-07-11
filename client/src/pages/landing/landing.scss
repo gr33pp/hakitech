@@ -12,9 +12,10 @@
   gap: 40px;
   width: 100vw;
   justify-self: center;
-  padding: var(--landing-pad-top) var(--landing-pad) 100px;
+  padding: var(--landing-pad-top) var(--landing-pad) 0;
   width: calc(100% - var(--landing-pad) * 2);
   max-width: calc(1440px - var(--landing-pad) * 2);
+  color: var(--text-color);
 
   &-hero {
     overflow: hidden;
@@ -71,7 +72,7 @@
         > * {
           border-radius: 10rem !important;
           padding: 14px 34px;
-          font-size: clamp(10px, 1.9vw, 16px);
+          font-size: clamp(10px, 2.2vw, 16px);
         }
       }
     }
@@ -119,9 +120,59 @@
       }
     }
   }
+
+  &-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+  }
 }
 
-@media screen and (max-width: 768px) {
+.features {
+  &-card {
+    display: grid;
+    border: 1px solid #ffffff25;
+    border-radius: 10px;
+    padding: 20px 20px 10px;
+    gap: 10px;
+    > * {
+      margin: 0;
+    }
+    h2 {
+      font-size: clamp(16px, 1vw, 20px);
+      font-weight: 400;
+      opacity: 0.6;
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: start;
+      column-gap: 8px;
+      align-items: center;
+    }
+    p {
+      opacity: 0.85;
+      max-width: 500px;
+      font-size: clamp(18px, 1vw, 24px);
+      line-height: 1.4;
+      font-weight: 500;
+    }
+    img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    > span {
+      margin-top: 10px;
+      overflow: hidden;
+      @include overlay(var(--bg-color), 0.3);
+
+      &:hover {
+        @include overlay(var(--bg-color), 0);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
   .landing {
     &-hero {
       &-content {
@@ -131,6 +182,14 @@
           width: 100%;
         }
       }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .landing {
+    &-features {
+      //   grid-template-columns: repeat(2, 1fr);
     }
   }
 }

@@ -19,3 +19,49 @@
     outline: #ffffffc7 solid 1px;
   }
 }
+
+.CTA {
+  display: grid;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+  font-size: clamp(14px, 3.5vw, 28px);
+  font-weight: 400;
+
+  &-text {
+    font-weight: 300;
+    > span {
+      font-weight: 500;
+    }
+  }
+
+  &-actions {
+    justify-self: center;
+    max-width: 320px;
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 20px;
+
+    > * {
+      border-radius: 10rem;
+    }
+  }
+}
+
+.footer {
+  border-top: 1px solid #ffffff25;
+  padding: 10px 0;
+  background-color: var(--bg-color);
+  margin-top: 20px;
+  text-align: center;
+  font-size: clamp(12px, 2.8vw, 18px);
+  display: grid;
+  justify-content: space-between;
+  grid-auto-flow: column;
+  align-items: center;
+
+  span {
+    cursor: pointer;
+  }
+}
