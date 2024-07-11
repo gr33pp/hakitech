@@ -178,6 +178,7 @@
 
 @media screen and (max-width: 1240px) {
   .landing {
+    row-gap: 12px;
     &-hero {
       &-content {
         padding: 0 4%;
@@ -203,6 +204,10 @@
     --landing-pad: 8px;
   }
   .landing {
+    row-gap: 20px;
+    &-features {
+      row-gap: 12px;
+    }
     &-hero {
       &-content {
         max-width: 95vw;
@@ -212,5 +217,11 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 920px) {
+  :root {
+    --landing-pad-top: clamp(80px, 15%, 160px);
   }
 }

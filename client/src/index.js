@@ -26,10 +26,10 @@ const router = createBrowserRouter([
         path: "features",
         element: <FeaturesPage />,
       },
-      {
-        path: "contact",
-        element: <></>,
-      },
+      // {
+      //   path: "contact",
+      //   element: <></>,
+      // },
       {
         path: "login",
         element: <Auth type={"login"} />,
@@ -44,6 +44,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "dashboard",
+  },
+  { path: "*", element: <div>404</div> },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
