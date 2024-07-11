@@ -1,0 +1,18 @@
+@import "@/utils/_mixins.scss";
+
+// Button
+.button {
+  background-color: var(--text-color);
+  padding: 9px 24px;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 4px;
+  color: var(--bg-color);
+  font-size: 15px;
+  cursor: pointer;
+  @include hover(var(--bg-color), 0.08);
+
+  &.stroke {
+    outline: var(--text-color) solid 1px;
+  }
+}
