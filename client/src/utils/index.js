@@ -29,6 +29,18 @@ export const features_data = [
       "Control and monitor your energy usage from anywhere with our website.",
     image: "image4.jpg",
   },
+  {
+    icon: "general_device",
+    title: "Energy Consumption Analytics",
+    description: "Visualize and optimize energy usage with detailed analytics.",
+    image: "image4.jpg",
+  },
+  {
+    icon: "general_device",
+    title: "Historical Data and Reports",
+    description: "Access detailed historical energy usage reports.",
+    image: "image4.jpg",
+  },
 ];
 
 export const images = [
@@ -36,6 +48,8 @@ export const images = [
   "/images/insight.webp",
   "/images/dashboard.webp",
   "/images/remote.webp",
+  "/images/analytics.webp",
+  "/images/remote-2.webp",
 ];
 
 export const FollowUp = () => {

@@ -1,27 +1,29 @@
-import LandingPageNav from "./navigation";
 import "./landing.scss";
 import Button from "@/components/button";
-import { CTA, features_data, FollowUp, images } from "../../utils";
-import Footer from "../../components/footer";
+import { features_data, FollowUp, images } from "../../utils";
+import { useNavigate } from "react-router-dom";
 
-export default function LandingPage() {
+export function LandingPage() {
   return (
-    <div className="landing">
-      <LandingPageNav />
+    <>
       <LandingPageHero />
       <LandingFollowUp>
         <FollowUp />
       </LandingFollowUp>
       <LandingFeatures />
-      <LandingFollowUp>
-        <CTA />
-      </LandingFollowUp>
-      <Footer />
-    </div>
+    </>
+  );
+}
+export function FeaturesPage() {
+  return (
+    <>
+      <LandingFeatures all />
+    </>
   );
 }
 
-const LandingPageHero = () => {
+export const LandingPageHero = () => {
+  const navigate = useNavigate();
   return (
     <div className="landing-hero">
       <div
@@ -37,8 +39,12 @@ const LandingPageHero = () => {
           consumption with our cutting-edge technology.
         </p>
         <div className="actions">
-          <Button text="Get Started" />
-          <Button text="Learn More" stroke />
+          <Button text="Get Started" onClick={() => navigate("signup")} />
+          <Button
+            text="Learn More"
+            stroke
+            onClick={() => navigate("features")}
+          />
         </div>
         <i>
           <img
@@ -52,7 +58,7 @@ const LandingPageHero = () => {
   );
 };
 
-const LandingFollowUp = ({ children }) => {
+export const LandingFollowUp = ({ children }) => {
   return (
     <div className="landing-followup">
       <div>{children}</div>
@@ -60,17 +66,20 @@ const LandingFollowUp = ({ children }) => {
   );
 };
 
-const LandingFeatures = () => {
+export const LandingFeatures = ({ all }) => {
   return (
     <div className="landing-features">
-      {features_data.map((feature, index) => (
-        <FeaturesCard key={index} idx={index} {...feature} />
-      ))}
+      {features_data.map(
+        (feature, index) =>
+          (!all ? index < 4 : index >= 0) && (
+            <FeaturesCard key={index} idx={index} {...feature} />
+          )
+      )}
     </div>
   );
 };
 
-const FeaturesCard = ({ idx, icon, title, description, image }) => {
+export const FeaturesCard = ({ idx, icon, title, description, image }) => {
   return (
     <div className="features-card">
       <h2>

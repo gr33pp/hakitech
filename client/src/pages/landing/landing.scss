@@ -12,10 +12,14 @@
   gap: 40px;
   width: 100vw;
   justify-self: center;
-  padding: var(--landing-pad-top) var(--landing-pad) 0;
+  padding: var(--landing-pad-top) (var(--landing-pad)) 0;
   width: calc(100% - var(--landing-pad) * 2);
   max-width: calc(1440px - var(--landing-pad) * 2);
   color: var(--text-color);
+
+  &:has(.auth) {
+    --landing-pad-top: clamp(90px, 12%, 140px);
+  }
 
   &-hero {
     overflow: hidden;
@@ -150,7 +154,7 @@
     }
     p {
       opacity: 0.85;
-      max-width: 500px;
+      max-width: 400px;
       font-size: clamp(18px, 1vw, 24px);
       line-height: 1.4;
       font-weight: 500;
@@ -189,7 +193,7 @@
 @media screen and (min-width: 1024px) {
   .landing {
     &-features {
-      //   grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }
