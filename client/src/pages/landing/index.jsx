@@ -1,6 +1,6 @@
 import LandingPageNav from "./navigation";
 import "./landing.scss";
-import Button from "../../components/button";
+import Button from "@/components/button";
 
 export default function LandingPage() {
   return (
@@ -45,9 +45,22 @@ const LandingPageHero = () => {
 
 const LandingFollowUp = () => {
   return (
-    <div className="landing-follow-up">
-      Manage energy efficiently, deploy globally, and continuously optimize for
-      sustainability.
+    <div className="landing-followup">
+      <div>
+        <span>
+          Manage energy efficiently
+          <i class="material-symbols-outlined">lightbulb</i>
+        </span>
+        <span>
+          Deploy globally
+          <i class="material-symbols-outlined">language</i>
+        </span>
+        <span>
+          Continuously optimize for sustainability
+          <i class="material-symbols-outlined">cycle</i>
+        </span>
+      </div>
     </div>
   );
 };
+
