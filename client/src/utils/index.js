@@ -85,3 +85,55 @@ export const CTA = () => {
     </div>
   );
 };
+
+export function validateAccount(fullName, meterNumber, email, password) {
+  // Validate full name
+  if (!fullName || fullName.trim() === "") {
+    return "Full name is required.";
+  }
+
+  // Validate meter number
+  if (!meterNumber || meterNumber.trim() === "") {
+    return "Meter number is required.";
+  }
+
+  // Validate email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    return "Invalid email address.";
+  }
+
+  // Validate password
+  if (!password || password.length < 8) {
+    return "Password must be at least 8 characters long.";
+  }
+
+  // All validations passed
+  return false;
+}
+
+export function validateLogin(email, password) {
+  // Validate email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    return "Invalid email address.";
+  }
+
+  // Validate password
+  if (!password || password.length < 8) {
+    return "Invalid password.";
+  }
+
+  // All validations passed
+  return false;
+}
+export function validateEmailRecovery(email, password) {
+  // Validate email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    return "Invalid email address.";
+  }
+
+  // All validations passed
+  return false;
+}

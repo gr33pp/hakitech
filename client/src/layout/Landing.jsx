@@ -19,12 +19,12 @@ const IndexLayout = () => {
         return <LandingPageNav title={"features"} />;
       case "/contact":
         return <LandingPageNav title={"contact"} />;
-      case "/login":
-        return <LandingPageNav title={"login"} login />;
-      case "/signup":
-        return <LandingPageNav title={"sign up"} signup />;
-      case "/reset":
-        return <LandingPageNav title={"reset"} signup />;
+      // case "/login":
+      //   return <LandingPageNav title={"login"} login />;
+      // case "/signup":
+      //   return <LandingPageNav title={"sign up"} signup />;
+      // case "/reset":
+      //   return <LandingPageNav title={"reset"} signup />;
       default:
         return <LandingPageNav />;
     }

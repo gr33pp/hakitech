@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import Button from "./button";
 import { Link } from "react-router-dom";
+import PopMsg from "./popMsg";
+import { validateAccount } from "../utils";
 
 export default function AuthCard({ btnText, mode, type }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [meterNumber, setMeterNumber] = useState("");
+  const [msg, setMsg] = useState(false);
   const clearInput = () => {
     setEmail("");
     setPassword("");
@@ -19,15 +23,31 @@ export default function AuthCard({ btnText, mode, type }) {
 
   const handleSubmit = () => {
     if (mode === "signup") {
-      console.log("Signing up with:", { email, password, fullName });
-    } else if (mode === "signin") {
-      console.log("Signing in with:", { email, password });
+      if (validateAccount(fullName, meterNumber, email, password) !== "sent") {
+        setMsg(validateAccount(fullName, meterNumber, email, password));
+      } else {
+        console.log("sent");
+      }
+    } else if (mode === "login") {
+      if (validateAccount(email, password) !== "sent") {
+        setMsg(validateAccount(email, password));
+      } else {
+        console.log("sent");
+      }
+    } else if (mode === "reset") {
+      if (validateAccount(email) !== "sent") {
+        setMsg(validateAccount(email));
+      } else {
+        console.log("sent");
+      }
     }
-    clearInput();
+
+    // clearInput();
   };
 
   return (
     <div className="auth-card">
+      {msg && <PopMsg msg={msg} isActive={(e) => setMsg(e)} />}
       {mode === "signup" && (
         <>
           <label className="input-group">
@@ -44,10 +64,10 @@ export default function AuthCard({ btnText, mode, type }) {
           <label className="input-group">
             <span>Meter number:</span>
             <input
-              type="text"
-              placeholder="Enter your full name"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+              type="number"
+              placeholder="Enter your meter number"
+              value={meterNumber}
+              onChange={(e) => setMeterNumber(e.target.value)}
               required
             />
             <span class="material-symbols-rounded">speed</span>
@@ -58,7 +78,7 @@ export default function AuthCard({ btnText, mode, type }) {
         <span>Email:</span>
         <input
           type="email"
-          placeholder="Enter your email"
+          placeholder="Enter your email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
