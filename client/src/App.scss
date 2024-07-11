@@ -10,6 +10,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Roboto", sans-serif;
+  -webkit-tap-highlight-color: #ffffff10;
 
   &::-webkit-scrollbar {
     display: none;

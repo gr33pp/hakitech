@@ -16,7 +16,7 @@
       grid-template-columns: auto 1fr auto;
       justify-content: space-between;
       align-items: center;
-      padding: clamp(15px, 3%, 30px) var(--landing-pad);
+      padding: clamp(15px, 3%, 30px) calc(var(--landing-pad) + 20px);
       background-color: var(--bg-color-alt);
       backdrop-filter: blur(3.5px) saturate(50%);
       width: calc(100% - var(--landing-pad) * 2);

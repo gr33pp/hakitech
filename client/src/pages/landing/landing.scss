@@ -72,7 +72,7 @@
         > * {
           border-radius: 10rem !important;
           padding: 14px 34px;
-          font-size: clamp(10px, 2.2vw, 16px);
+          font-size: clamp(11px, 2vw, 16px);
         }
       }
     }
@@ -190,6 +190,23 @@
   .landing {
     &-features {
       //   grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --landing-pad: 8px;
+  }
+  .landing {
+    &-hero {
+      &-content {
+        max-width: 95vw;
+
+        .actions {
+          //   column-gap: 10px;
+        }
+      }
     }
   }
 }
