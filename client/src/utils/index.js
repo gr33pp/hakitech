@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
 
 export const features_data = [
@@ -30,13 +31,13 @@ export const features_data = [
     image: "image4.jpg",
   },
   {
-    icon: "general_device",
+    icon: "monitoring",
     title: "Energy Consumption Analytics",
     description: "Visualize and optimize energy usage with detailed analytics.",
     image: "image4.jpg",
   },
   {
-    icon: "general_device",
+    icon: "history_edu",
     title: "Historical Data and Reports",
     description: "Access detailed historical energy usage reports.",
     image: "image4.jpg",
@@ -72,6 +73,7 @@ export const FollowUp = () => {
 };
 
 export const CTA = () => {
+  const navigate = useNavigate();
   return (
     <div className="CTA">
       <div className="CTA-text">
@@ -79,8 +81,8 @@ export const CTA = () => {
         free account or contact us for personalized solutions.
       </div>
       <div className="CTA-actions">
-        <Button text="Sign Up" />
-        <Button text="Explore" stroke />
+        <Button text="Sign Up" onClick={() => navigate("/signup")} />
+        <Button text="Explore" stroke onClick={() => navigate("/features")} />
       </div>
     </div>
   );
