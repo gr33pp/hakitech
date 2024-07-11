@@ -10,9 +10,12 @@
   color: var(--bg-color);
   font-size: 15px;
   cursor: pointer;
-  @include hover(var(--bg-color), 0.08);
+  @include hover(var(--bg-color), 0.1);
 
   &.stroke {
-    outline: var(--text-color) solid 1px;
+    @include hover(var(--text-color), 0.1);
+    background-color: transparent;
+    color: var(--text-color);
+    outline: #ffffffc7 solid 1px;
   }
 }

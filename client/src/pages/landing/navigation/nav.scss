@@ -8,7 +8,7 @@
     align-items: center;
     padding: clamp(20px, 3%, 40px) var(--landing-pad);
     background-color: var(--bg-color-alt);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(3.5px) saturate(50%);
     z-index: 100;
     position: fixed;
     width: calc(100% - var(--landing-pad) * 2);
