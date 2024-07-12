@@ -12,6 +12,8 @@ import reportWebVitals from "./reportWebVitals";
 import IndexLayout from "./layout/Landing";
 import { FeaturesPage, LandingPage } from "./pages/landing";
 import Auth from "./pages/auth";
+import DashboardLayout from "./layout/Dashboard";
+import Dashboard from "./pages/dashboard";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +48,13 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "",
+        element: <Dashboard />,
+      },
+    ],
   },
   { path: "*", element: <div>404</div> },
 ]);

@@ -2,7 +2,7 @@
 
 :root {
   --landing-pad: clamp(20px, 5%, 50px);
-  --landing-pad-top: clamp(90px, 10%, 160px);
+  --landing-pad-top: clamp(140px, 10%, 160px);
 }
 
 .landing {
@@ -153,7 +153,7 @@
       align-items: center;
     }
     p {
-      opacity: 0.85;
+      opacity: 0.95;
       max-width: 400px;
       font-size: clamp(18px, 1vw, 24px);
       line-height: 1.4;
@@ -177,8 +177,11 @@
 }
 
 @media screen and (max-width: 1240px) {
+  :root {
+    --landing-pad-top: clamp(120px, 10%, 150px);
+  }
   .landing {
-    row-gap: 12px;
+    // row-gap: 12px;
     &-hero {
       &-content {
         padding: 0 4%;
@@ -204,9 +207,9 @@
     --landing-pad: 8px;
   }
   .landing {
-    row-gap: 20px;
+    row-gap: 10px;
     &-features {
-      row-gap: 12px;
+      grid-gap: 10px !important;
     }
     &-hero {
       &-content {
@@ -218,10 +221,10 @@
       }
     }
   }
+  :root {
+    --landing-pad-top: clamp(72px, 12%, 160px);
+  }
 }
 
-@media screen and (max-width: 920px) {
-  :root {
-    --landing-pad-top: clamp(80px, 15%, 160px);
-  }
+@media screen and (max-width: 840px) {
 }
