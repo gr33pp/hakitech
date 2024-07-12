@@ -1,0 +1,115 @@
+@import "@/utils/_mixins.scss";
+
+// Button
+.button {
+  background-color: var(--text-color);
+  padding: 9px 24px;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 4px;
+  color: var(--bg-color);
+  font-size: 15px;
+  cursor: pointer;
+  @include hover(var(--bg-color), 0.1);
+
+  &.stroke {
+    @include hover(var(--text-color), 0.1);
+    & {
+      background-color: transparent;
+      color: var(--text-color);
+      outline: #ffffffc7 solid 1px;
+    }
+  }
+}
+
+.CTA {
+  display: grid;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+  font-size: clamp(17px, 3.5vw, 28px);
+  font-weight: 400;
+
+  &-text {
+    & {
+      font-weight: 300;
+    }
+    > span {
+      font-weight: 500;
+      padding-right: 10px;
+    }
+  }
+
+  &-actions {
+    justify-self: center;
+    max-width: 320px;
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 20px;
+
+    > * {
+      border-radius: 10rem;
+    }
+  }
+}
+
+.footer {
+  border-top: 1px solid #ffffff25;
+  padding: 10px;
+  background-color: var(--bg-color);
+  margin-top: 20px;
+  text-align: center;
+  font-size: clamp(12px, 2.8vw, 18px);
+  display: grid;
+  justify-content: space-between;
+  grid-auto-flow: column;
+  align-items: center;
+
+  span {
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+.pop {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  width: max-content;
+  z-index: 100;
+  align-items: center;
+  align-content: center;
+  transform: translateX(-50%);
+  padding: 0 10px;
+  height: 50px;
+  border: 2px solid #521010ab;
+  border-radius: 10px;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 20px;
+  font-size: 14px;
+  background-color: var(--bg-color);
+  font-weight: 300;
+  animation: pop-slide-in 0.5s forwards;
+
+  .material-symbols-rounded {
+    @include hover(var(--text-color), 0.1);
+    & {
+      font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 20;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+  }
+}
+
+@keyframes pop-slide-in {
+  from {
+    transform: translateY(-80px) translateX(-50%) scale(1.1);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
+}

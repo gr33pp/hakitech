@@ -1,0 +1,93 @@
+@import "@/utils/_mixins.scss";
+
+:root {
+  --nav-pad: 0px;
+}
+
+.landing {
+  &-nav {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 100;
+    border-bottom: 1px solid #ffffff25;
+    transform: translateX(-50%);
+    width: 100vw;
+    display: grid;
+
+    &-logo {
+      text-transform: uppercase;
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    &-title {
+      text-transform: capitalize;
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 500;
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: slide-in 0.6s forwards;
+    }
+    > div {
+      justify-self: center;
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      justify-content: space-between;
+      align-items: center;
+      padding: clamp(15px, 3%, 30px) calc(var(--nav-pad) + var(--landing-pad));
+      background-color: var(--bg-color-alt);
+      backdrop-filter: blur(3.5px) saturate(50%);
+      width: calc(100% - calc((var(--nav-pad) + var(--landing-pad)) * 2));
+      max-width: calc(1450px - var(--landing-pad) * 2);
+
+      :last-child {
+        justify-self: end;
+
+        .button {
+          width: 80px;
+          text-align: center;
+        }
+      }
+
+      :nth-child(2) {
+        justify-self: center;
+        display: grid;
+        grid-auto-flow: column;
+        column-gap: clamp(30px, 3vw, 50px);
+
+        > a {
+          padding: 10px 18px;
+          border-radius: 6px;
+          cursor: pointer;
+          @include hover(#797979, 0.5);
+        }
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@keyframes slide-in {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  :root {
+    --nav-pad: 10px;
+  }
+  .landing {
+    &-nav {
+      &-links {
+        display: none !important;
+      }
+    }
+  }
+}

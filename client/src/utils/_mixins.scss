@@ -1,0 +1,46 @@
+@mixin myMixin($color, $size) {
+  color: $color;
+  font-size: $size;
+}
+
+@mixin hover($color, $opacity) {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    transition: 0.25s ease-in;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: $opacity;
+    z-index: -1;
+  }
+
+  &:hover {
+    &::after {
+      background-color: $color;
+    }
+  }
+}
+
+@mixin overlay($color, $opacity) {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    z-index: 0;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: $opacity;
+    background-color: $color;
+    transition: 0.3s ease-in;
+  }
+  > * {
+    z-index: 1;
+  }
+}
