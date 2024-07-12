@@ -5,26 +5,29 @@ import AuthCard from "../../components/authCard";
 export default function Auth({ type }) {
   const authRef = useRef(null);
 
-  const scrollToPage = useCallback(() => {
-    if (type === "login") {
-      authRef.current.scrollTo({
-        left: authRef.current.scrollWidth,
-        behavior: "smooth",
-      });
-    } else {
-      authRef.current.scrollTo({
-        left: 0,
-        behavior: "smooth",
-      });
-    }
-  }, [type]);
+  const scrollToPage = useCallback(
+    (e) => {
+      if (type === "login") {
+        authRef.current.scrollTo({
+          left: authRef.current.scrollWidth,
+          behavior: e ? e.behaviour : "smooth",
+        });
+      } else {
+        authRef.current.scrollTo({
+          left: 0,
+          behavior: e ? e.behaviour : "smooth",
+        });
+      }
+    },
+    [type]
+  );
   useEffect(() => {
     scrollToPage();
   }, [type, scrollToPage]);
 
   useEffect(() => {
     const handleResize = () => {
-      scrollToPage();
+      scrollToPage({ behavior: "instant" });
     };
 
     window.addEventListener("resize", handleResize);

@@ -139,3 +139,100 @@ export function validateEmailRecovery(email, password) {
   // All validations passed
   return false;
 }
+
+export const menuList = [
+  {
+    name: "Home",
+    icon: "home",
+    link: "/dashboard",
+  },
+  {
+    name: "Usage",
+    icon: "bar_chart",
+    link: "/usage",
+  },
+  {
+    name: "Payment",
+    icon: "payment",
+    link: "/payment",
+  },
+  {
+    name: "Settings",
+    icon: "settings",
+    link: "/settings",
+  },
+  {
+    name: "Logout",
+    icon: "logout",
+    link: "/login",
+  },
+];
+
+// export const Navigate = ({ link, children }) => {
+//   const navigate = useNavigate();
+//   navigate(link);
+
+//   return children;
+// };
+
+const dummyUser = {
+  fullName: "Angelina Jolie",
+  email: "angelinajolie@gmail.com",
+  meterNumber: "123456789",
+};
+
+export const fetchUserData = async () => {
+  const data = await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(dummyUser);
+    }, 0);
+  });
+  return data;
+};
+
+export const notifications = [
+  {
+    id: 1,
+    message: "Power outage detected",
+    timestamp: new Date(),
+  },
+  {
+    id: 2,
+    message: "Energy consumption exceeded threshold",
+    timestamp: new Date(),
+  },
+  {
+    id: 3,
+    message: "Reminder: Scheduled maintenance tomorrow",
+    timestamp: new Date(),
+  },
+  {
+    id: 4,
+    message: "Low battery warning",
+    timestamp: new Date(),
+  },
+  {
+    id: 5,
+    message: "Energy-saving tips for your home",
+    timestamp: new Date(),
+  },
+];
+
+export const energySavingTips = [
+  "Turn off lights when not in use to save energy.",
+  "Unplug electronics when not in use to reduce standby power consumption.",
+  "Use energy-efficient appliances and light bulbs to save electricity.",
+  "Set your thermostat to an energy-saving temperature to reduce heating and cooling costs.",
+  "Insulate your home properly to prevent energy loss and save on heating and cooling.",
+];
+
+export const SetPropertyForMenu = (menu) => {
+  const root = document.documentElement;
+  root.style.setProperty("--d-translatex", !menu ? "0" : "-280px");
+  root.style.setProperty("--d-container-translatex", !menu ? "-200px" : "0");
+};
+export const ResetPropertyForMenu = () => {
+  const root = document.documentElement;
+  root.style.removeProperty("--d-translatex");
+  root.style.removeProperty("--d-container-translatex");
+};

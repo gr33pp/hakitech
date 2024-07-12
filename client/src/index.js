@@ -14,6 +14,7 @@ import { FeaturesPage, LandingPage } from "./pages/landing";
 import Auth from "./pages/auth";
 import DashboardLayout from "./layout/Dashboard";
 import Dashboard from "./pages/dashboard";
+import { UserContext, UserProvider } from "./context";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +63,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );
 
