@@ -12,6 +12,10 @@ import reportWebVitals from "./reportWebVitals";
 import IndexLayout from "./layout/Landing";
 import { FeaturesPage, LandingPage } from "./pages/landing";
 import Auth from "./pages/auth";
+import DashboardLayout from "./layout/Dashboard";
+import Dashboard from "./pages/dashboard";
+import { UserContext, UserProvider } from "./context";
+import { Payments, Usage } from "./pages/dashboard/paths";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +50,25 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "",
+        element: <Dashboard />,
+      },
+      {
+        path: "energy-usage",
+        element: <Usage />,
+      },
+      {
+        path: "payment-history",
+        element: <Payments />,
+      },
+      {
+        path: "settings",
+        element: <Dashboard />,
+      },
+    ],
   },
   { path: "*", element: <div>404</div> },
 ]);
@@ -53,7 +76,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );
 

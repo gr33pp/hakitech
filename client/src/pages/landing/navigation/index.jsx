@@ -11,7 +11,7 @@ export default function LandingPageNav({ title, login, signup }) {
         {title ? (
           <div className="landing-nav-title">{title}</div>
         ) : (
-          <div className="landing-nav-logo">Hackitech</div>
+          <div className="landing-nav-logo">Hakitech</div>
         )}
         <div className="landing-nav-links">
           {(!login || !signup) && (

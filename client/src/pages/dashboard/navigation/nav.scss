@@ -1,0 +1,213 @@
+@import "@/utils/_mixins.scss";
+
+:root {
+  --nav-bg: #131313;
+  --menu-item-width: 190px;
+  --menu-x-pad: 30px;
+}
+
+.dashboard {
+  &-nav {
+    z-index: 20;
+    width: calc(100% - (2 * var(--menu-x-pad)));
+    background-color: var(--nav-bg);
+    display: grid;
+    // grid-auto-flow: row;
+    grid-template-rows: auto 1fr;
+    align-content: start;
+    gap: 40px;
+    padding: var(--d-pad-top) var(--menu-x-pad) 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .nav {
+      &-head {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: start;
+        align-items: start;
+        align-content: start;
+        padding: 0 5px;
+        column-gap: 20px;
+        font-family: "Acme", sans-serif;
+        font-size: clamp(28px, 3.5vw, 36px);
+        .menuBtn {
+          font-size: 42px;
+          line-height: 0.85;
+          cursor: pointer;
+        }
+      }
+      &-menu {
+        align-content: start;
+        grid-template-rows: repeat(3, auto) 1fr;
+        display: grid;
+        row-gap: 24px;
+      }
+      &-item {
+        justify-self: start;
+        width: var(--menu-item-width);
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        justify-content: start;
+        column-gap: 20px;
+        cursor: pointer;
+        // background-color: #7777772d;
+        padding: 16px 22px;
+        border-radius: 10px;
+        z-index: 1;
+        @include hover(#636363, 0.23);
+
+        &.active {
+          @include overlay(#636363, 0.23);
+        }
+
+        &:last-child,
+        &:nth-child(4) {
+          align-self: last baseline;
+        }
+
+        &:nth-child(4) {
+          margin-top: 50px;
+        }
+
+        &::after {
+          transition-duration: 0.3s;
+        }
+        * {
+          opacity: 0.75;
+        }
+      }
+    }
+  }
+}
+
+.user {
+  &-info {
+    overflow-y: auto;
+    padding: var(--d-pad-top) 30px calc(var(--d-pad-top) / 2);
+    background-color: var(--nav-bg);
+    display: grid;
+    align-content: start;
+    grid-template-rows: repeat(2, auto) 1fr;
+    row-gap: 40px;
+    > div {
+      display: grid;
+    }
+
+    > :last-child {
+      align-self: last baseline;
+    }
+  }
+  &-card {
+    height: 200px;
+    border: 1px solid #ffffff25;
+    border-radius: 8px;
+    display: grid;
+    align-content: center;
+    text-align: center;
+    justify-items: center;
+    row-gap: 14px;
+    padding: 12px;
+    align-self: start;
+  }
+  &-avatar {
+    width: 80px;
+    height: 80px;
+    display: grid;
+    place-content: center;
+    @include overlay(var(--text-color), 0.4);
+    border-radius: 50%;
+    font-size: 28px;
+  }
+  &-details {
+    display: grid;
+    row-gap: 6px;
+    font-size: 16px;
+    font-weight: 400;
+    // font-family: "Signika Negative", sans-serif;
+
+    :last-child {
+      opacity: 0.7;
+    }
+  }
+}
+
+.notification {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: 18px;
+  &-head {
+    display: grid;
+    align-items: center;
+    grid-auto-flow: column;
+    justify-content: space-between;
+
+    i {
+      opacity: 0.8;
+      font-size: 24px !important;
+    }
+  }
+
+  &-card {
+    max-height: 280px;
+    overflow: auto;
+    display: grid;
+    font-size: 14px;
+    font-weight: 300;
+    opacity: 0.8;
+    row-gap: 12px;
+    align-content: start;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &-details {
+      display: grid;
+      grid-auto-flow: column;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #ffffff25;
+      border-radius: 8px;
+      padding: 12px;
+      column-gap: 10px;
+      //   font-family: "Signika Negative", sans-serif;
+      opacity: 0.9;
+      font-weight: 300;
+      @include hover(var(--bg-color), 0.3);
+
+      &::after {
+        transition-duration: 0.1s;
+      }
+
+      span:nth-child(2) {
+        @include hover(var(--text-color), 0.1);
+        & {
+          font-size: 16px;
+          cursor: pointer;
+          border-radius: 50%;
+          padding: 4px;
+        }
+      }
+    }
+  }
+}
+
+.tips {
+  > :nth-child(2) {
+    font-weight: 300;
+    font-family: "Signika Negative", sans-serif;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .dashboard {
+  }
+  .user {
+    &-info {
+      opacity: 0;
+    }
+  }
+}

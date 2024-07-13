@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
+import { useEffect } from "react";
 
 export const features_data = [
   {
@@ -139,3 +140,196 @@ export function validateEmailRecovery(email, password) {
   // All validations passed
   return false;
 }
+
+export const menuList = [
+  {
+    name: "Home",
+    icon: "home",
+    link: "",
+  },
+  {
+    name: "Usage",
+    icon: "bar_chart",
+    link: "energy-usage",
+  },
+  {
+    name: "Payment",
+    icon: "payment",
+    link: "payment-history",
+  },
+  // {
+  //   name: "Settings",
+  //   icon: "settings",
+  //   link: "settings",
+  // },
+  {
+    name: "Logout",
+    icon: "logout",
+    link: "/login",
+  },
+];
+
+// export const Navigate = ({ link, children }) => {
+//   const navigate = useNavigate();
+//   navigate(link);
+
+//   return children;
+// };
+
+const dummyUser = {
+  fullName: "Angelina Jolie",
+  email: "angelinajolie@gmail.com",
+  meterNumber: "123456789",
+};
+
+export const fetchUserData = async () => {
+  const data = await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(dummyUser);
+    }, 0);
+  });
+  return data;
+};
+
+export const notifications = [
+  {
+    id: 1,
+    message: "Power outage detected",
+    timestamp: new Date(),
+  },
+  {
+    id: 2,
+    message: "Energy consumption exceeded threshold",
+    timestamp: new Date(),
+  },
+  {
+    id: 3,
+    message: "Reminder: Scheduled maintenance tomorrow",
+    timestamp: new Date(),
+  },
+  {
+    id: 4,
+    message: "Low battery warning",
+    timestamp: new Date(),
+  },
+  {
+    id: 5,
+    message: "Energy-saving tips for your home",
+    timestamp: new Date(),
+  },
+];
+
+export const paymentHistory = [];
+
+export const energySavingTips = [
+  "Turn off lights when not in use to save energy.",
+  "Unplug electronics when not in use to reduce standby power consumption.",
+  "Use energy-efficient appliances and light bulbs to save electricity.",
+  "Set your thermostat to an energy-saving temperature to reduce heating and cooling costs.",
+  "Insulate your home properly to prevent energy loss and save on heating and cooling.",
+];
+
+export const SetPropertyForMenu = (menu) => {
+  const root = document.documentElement;
+  root.style.setProperty("--d-translatex", !menu ? "0" : "-280px");
+  root.style.setProperty("--d-container-translatex", !menu ? "-200px" : "0");
+  root.style.setProperty("--d-content-index", menu ? "0" : "1");
+};
+export const ResetPropertyForMenu = () => {
+  const root = document.documentElement;
+  root.style.removeProperty("--d-translatex");
+  root.style.removeProperty("--d-container-translatex");
+  root.style.removeProperty("--d-content-index");
+};
+export const useOutsideClick = (ref, callback) => {
+  const handleClick = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      callback();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  });
+};
+
+export const getNavIndex = (pathname) => {
+  switch (pathname) {
+    case "/dashboard":
+      return 0;
+    case "/dashboard/energy-usage":
+      return 1;
+    case "/dashboard/payment-history":
+      return 2;
+    case "/dashboard/settings":
+      return 3;
+    default:
+      return 0;
+  }
+};
+
+export const useStopPropagation = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+};
+
+export const usageData = [
+  {
+    icon: "today",
+    title: "Today Usage",
+    value: "12.5 kWh",
+    desc: "Average daily usage",
+  },
+  {
+    icon: "weekend",
+    title: "This Week Usage",
+    value: "87.5 kWh",
+    desc: "Average weekly usage",
+  },
+  {
+    icon: "date_range",
+    title: "This Month Usage",
+    value: "375 kWh",
+    desc: "Average monthly usage",
+  },
+  {
+    icon: "calendar_month",
+    title: "This Year Usage",
+    value: "4500 kWh",
+    desc: "Average yearly usage",
+  },
+];
+
+export const fetchWeather = async () => {
+  const apiUrl = process.env.REACT_APP_WEATHER_API_URL;
+  const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+
+  console.log(apiUrl, apiKey);
+  try {
+    const response = await fetch(
+      `${apiUrl}?key=${apiKey}&q=${"102.215.57.224"}&aqi=no`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching weather data: ", error);
+  }
+};
+
+export const fetchIpAddress = async () => {
+  try {
+    const response = await fetch("https://api.ipify.org?format=json");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    // console.log(data.ip);
+    return data.ip;
+  } catch (error) {
+    console.log(error.message);
+  }
+};

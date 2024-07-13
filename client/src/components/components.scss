@@ -1,5 +1,11 @@
 @import "@/utils/_mixins.scss";
 
+:root {
+  --icon-display: grid;
+  --value-size: clamp(30px, 3.5vw, 52px);
+  --usage-card-columns: repeat(auto-fit, minmax(clamp(0px, 90vw, 320px), 1fr));
+}
+
 // Button
 .button {
   background-color: var(--text-color);
@@ -27,7 +33,7 @@
   gap: 20px;
   align-items: center;
   text-align: center;
-  font-size: clamp(17px, 3.5vw, 28px);
+  font-size: clamp(16px, 3.5vw, 28px);
   font-weight: 400;
 
   &-text {
@@ -111,5 +117,123 @@
   to {
     transform: translateY(0) translateX(-50%);
     opacity: 1;
+  }
+}
+
+.card {
+  &-usage {
+    display: grid;
+    // grid-auto-flow: column;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(clamp(0px, 90vw, 300px), 1fr)
+    );
+    // row-gap: 20px;
+    grid-gap: clamp(40px, 4vw, 60px);
+    &.path {
+      grid-template-columns: var(--usage-card-columns);
+      .usage-card {
+        outline: 1px solid #ffffff25;
+        height: 120px;
+      }
+    }
+    &.card {
+      .usage-card {
+        background: url("https://transparenttextures.com/patterns/asfalt-light.png");
+        &:first-child {
+          outline: 1px solid #ffffff25;
+          @include overlay(var(--bg-color), 0.4);
+        }
+        &:last-child {
+          @include overlay(#161616, 0.7);
+        }
+      }
+    }
+
+    .usage {
+      &-card {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: auto 1fr;
+        column-gap: clamp(24px, 4vw, 50px);
+        justify-content: start;
+        // align-items: center;
+        padding: 30px;
+        border-radius: 10px;
+        height: 180px;
+        margin: 0 5px;
+
+        &-icon {
+          display: var(--icon-display);
+          place-items: center;
+          padding: 10px;
+          .material-symbols-rounded {
+            outline: 2px solid var(--text-color-alt);
+            // background: #ffffff15;
+            padding: 20px;
+            border-radius: 24px;
+            font-size: clamp(30px, 2.8vw, 52px);
+            font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 32;
+
+            @include overlay(#ffffff30, 1);
+            &::after {
+              filter: blur(50px);
+              z-index: 0;
+            }
+          }
+        }
+        &-item {
+          display: grid;
+          align-content: space-evenly;
+          font-size: clamp(12px, 2vw, 18px);
+          > :first-child {
+            opacity: 0.7;
+          }
+          > :last-child {
+            opacity: 0.85;
+          }
+
+          &-value {
+            font-size: var(--value-size);
+            font-weight: 500;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  &-payment {
+    margin-bottom: 20px;
+    > div {
+      padding: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 820px) and (min-width: 730px) {
+  :root {
+    --icon-display: none;
+  }
+}
+@media screen and (max-width: 1240px) and (min-width: 920px) {
+  :root {
+    --icon-display: none;
+  }
+}
+
+@media screen and (max-width: 2048px) and (min-width: 1640px) {
+  :root {
+    --usage-card-columns: repeat(
+      auto-fit,
+      minmax(clamp(0px, 90vw, 500px), 1fr)
+    );
+    --icon-display: none;
+    --value-size: clamp(30px, 3.5vw, 50px);
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  :root {
+    --usage-card-columns: repeat(2, 1fr);
   }
 }

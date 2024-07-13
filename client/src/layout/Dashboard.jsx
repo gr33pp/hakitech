@@ -1,36 +1,75 @@
 // src/components/Layout.js
-import React, { useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import LandingPageNav from "../pages/landing/navigation";
-import Footer from "../components/footer";
-import { LandingFollowUp } from "../pages/landing";
-import { CTA } from "../utils";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import DashboardNav, { UserInfo } from "../pages/dashboard/navigation";
+import "@/pages/dashboard/dashboard.scss";
+import { UserContext } from "../context";
+import { fetchUserData, getNavIndex, ResetPropertyForMenu } from "../utils";
+import { DashboardHead, Greetings } from "../pages/dashboard";
 
 const DashboardLayout = () => {
   const location = useLocation();
+  const { setMenu, setUser } = useContext(UserContext);
 
-  const renderHeader = () => {
+  const isAuthenticated = () => {
+    return !!localStorage.getItem("authToken");
+  };
+
+  useCallback(async () => {
+    if (isAuthenticated) {
+      const userData = await fetchUserData(localStorage.getItem("authToken"));
+      setUser(userData);
+    }
+  }, [setUser]);
+
+  //   const renderNav = () => {
+  //     switch (location.pathname) {
+  //       case "/dashboard":
+  //         return <DashboardNav index={0} />;
+  //       default:
+  //         return <DashboardNav index={0} />;
+  //     }
+  //   };
+  const renderHead = () => {
     switch (location.pathname) {
       case "/dashboard":
-        return <LandingPageNav title={"features"} />;
-      case "/contact":
-        return <LandingPageNav title={"contact"} />;
+        return <Greetings />;
       default:
-        return <LandingPageNav />;
+        return <DashboardHead />;
     }
+  };
+
+  const handleClick = (e) => {
+    // console.log(e.target, e.currentTarget.firstChild);
+    if (e.target === e.currentTarget.firstChild.firstChild) {
+      return;
+    }
+    ResetPropertyForMenu();
+    setMenu(false);
   };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [location.pathname]);
+    ResetPropertyForMenu();
+    setMenu(false);
+  }, [location.pathname, setMenu]);
 
-  return (
-    <div className="landing">
-      {renderHeader()}
-      <Outlet />
-      <Footer scrollToTop />
-    </div>
-  );
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" message={"You have to sign in first"} />;
+  } else {
+    return (
+      <div className="dashboard">
+        <DashboardNav index={getNavIndex(location.pathname)} />
+        <div className="dashboard-content" onClick={handleClick}>
+          {renderHead()}
+          <div className="dashboard-container">
+            <Outlet />
+          </div>
+        </div>
+        <UserInfo />
+      </div>
+    );
+  }
 };
 
 export default DashboardLayout;
