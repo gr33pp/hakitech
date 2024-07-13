@@ -2,20 +2,23 @@
 
 :root {
   --nav-bg: #141414;
+  --menu-item-width: 190px;
+  --menu-x-pad: 30px;
 }
 
 .dashboard {
   &-nav {
     z-index: 20;
-    width: calc(100% - 60px);
+    width: calc(100% - (2 * var(--menu-x-pad)));
     background-color: var(--nav-bg);
     display: grid;
     // grid-auto-flow: row;
     grid-template-rows: auto 1fr;
     align-content: start;
     gap: 40px;
-    padding: var(--d-pad-top) 30px;
-    overflow: auto;
+    padding: var(--d-pad-top) var(--menu-x-pad) 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     .nav {
       &-head {
@@ -42,7 +45,7 @@
       }
       &-item {
         justify-self: start;
-        width: 160px;
+        width: var(--menu-item-width);
         display: grid;
         grid-auto-flow: column;
         align-items: center;
@@ -55,9 +58,12 @@
         z-index: 1;
         @include hover(#636363, 0.23);
 
+        &.active {
+          @include overlay(#636363, 0.23);
+        }
+
         &:last-child,
         &:nth-child(4) {
-          //   background-color: red;
           align-self: last baseline;
         }
 

@@ -1,9 +1,13 @@
+@import "@/utils/_mixins.scss";
+
 :root {
   --d-column: 280px 1fr 350px;
   --d-translatex: 0;
   --d-container-translatex: 0;
   --d-pad-top: 30px;
   --d-pad-x: clamp(40px, 4vw, 100px);
+  --d-content-index: 0;
+  --view-all-size: clamp(12.5px, 0.8vw, 16px);
   //   -d-bg:
 }
 .dashboard {
@@ -15,10 +19,18 @@
   background-color: var(--bg-color);
 
   &-content {
+    justify-self: center;
+    width: 100%;
+    max-width: 1440px;
     display: grid;
     align-content: start;
     transform: translateX(var(--d-container-translatex));
     transition: 0.3s cubic-bezier(0.46, 0.14, 0.015, 1.095) transform;
+    @include overlay(var(--bg-color), 0.5);
+
+    &::after {
+      z-index: var(--d-content-index);
+    }
   }
   &.menu {
   }
@@ -33,23 +45,24 @@
     border-bottom: 1px solid #ffffff19;
     display: grid;
     grid-auto-flow: column;
+    grid-template-columns: auto 1fr;
     justify-content: start;
     text-transform: capitalize;
     align-items: center;
     column-gap: clamp(10px, 1vw, 20px);
 
-    > div:last-child {
+    > div:nth-child(2) {
       display: grid;
 
       span {
         &:first-child {
-          font-size: clamp(14px, 1vw, 18px);
+          font-size: clamp(12px, 1vw, 18px);
           opacity: 0.7;
           font-weight: 300;
         }
         &:last-child {
           letter-spacing: -0.055rem;
-          font-size: clamp(28px, 3.5vw, 42px);
+          font-size: clamp(24px, 3.5vw, 42px);
           font-weight: 500;
           // font-family: "Acme", sans-serif;
         }
@@ -57,8 +70,91 @@
     }
   }
 
-  &-card{
-    
+  .header {
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 500;
+    padding-top: calc(var(--d-pad-top) / 1.4);
+    line-height: 2;
+  }
+
+  &-balance {
+    border: 1px solid #ffffff19;
+    background-color: #161616;
+    border-radius: 12px;
+    justify-self: start;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    justify-content: start;
+    align-content: center;
+    padding: 24px 30px;
+    row-gap: 24px;
+    .balance {
+      font-size: clamp(32px, 4vw, 42px);
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: start;
+      align-content: center;
+      column-gap: 15px;
+
+      span {
+        // display: none;
+        align-self: last baseline;
+        padding: calc(var(--view-all-size) / 3) var(--view-all-size);
+        border-radius: 10rem;
+        font-size: var(--view-all-size);
+        opacity: 0.8;
+        font-weight: 300;
+        margin-bottom: 12px;
+        @include overlay(#ffffff, 0.05);
+      }
+    }
+    > :last-child {
+      // background-color: #fff;
+      place-self: start;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+
+      @include overlay(#ffffff, 0.05);
+      &:hover {
+        @include overlay(#ffffff, 0.08);
+      }
+    }
+  }
+
+  &-container {
+    display: grid;
+    padding: clamp(20px, calc((var(--d-pad-x) + 18px) / 2), 60px)
+      calc(var(--d-pad-x) + clamp(10px, 1.4vw, 42px));
+    row-gap: clamp(20px, calc((var(--d-pad-x) + 18px) / 2), 60px);
+  }
+
+  &-card {
+    display: grid;
+    grid-auto-flow: row;
+
+    .card {
+      &-head {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        font-size: clamp(20px, 2vw, 32px);
+
+        > :nth-child(2) {
+          background-color: #161616;
+          padding: calc(var(--view-all-size) / 2) var(--view-all-size);
+          border-radius: 10rem;
+          font-size: var(--view-all-size);
+          opacity: 0.8;
+          font-weight: 300;
+          margin-right: 5px;
+          text-align: center;
+          @include hover(#ffffff, 0.05);
+        }
+      }
+    }
   }
 }
 
@@ -71,8 +167,9 @@
 
 @media screen and (max-width: 800px) {
   :root {
-    --d-pad-top: 40px;
+    --d-pad-top: 30px;
     --d-pad-x: clamp(0px, 2vw, 20px);
+    --menu-x-pad: 15px;
 
     // --d-column: 1fr;
     --d-translatex: -280px;
@@ -92,6 +189,10 @@
   .dashboard {
     --d-pad-x: clamp(0px, 1vw, 30px);
     width: calc(100vw + 350px);
+
+    .greetings {
+      grid-template-columns: auto 1fr;
+    }
   }
 }
 
@@ -110,5 +211,13 @@
 @media screen and (min-width: 1820px) {
   .dashboard {
     --d-pad-top: 60px;
+  }
+}
+
+@media screen and (min-width: 1640px) {
+  :root {
+    --d-column: 330px 1fr 380px;
+    --menu-item-width: 200px;
+    --menu-x-pad: 40px;
   }
 }

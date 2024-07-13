@@ -1,12 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context";
 import { ResetPropertyForMenu, SetPropertyForMenu } from "../../utils";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Dashboard() {
+  const { balance } = useContext(UserContext);
+
   return (
-    <div className="dashboard-content">
-      <Greetings />
+    <div className="dashboard-container">
+      <div className="dashboard-balance">
+        <span className="balance">
+          <div>{balance}</div>
+          <span>Balance</span>
+        </span>
+        <span>Top up</span>
+      </div>
+      <DashboardUsageCard />
     </div>
   );
 }
@@ -21,23 +30,34 @@ export const Greetings = () => {
         <span>Hi, {user?.fullName}</span>
         <span>Welcome back</span>
       </div>
+      {/* <span class="material-symbols-rounded">location_home</span> */}
     </div>
   );
 };
 
-export const MenuButton = () => {
+export const DashboardHead = ({ ...props }) => {
+  const location = useLocation();
+  const pathname = location.pathname;
+  const name = pathname
+    .substring(pathname.lastIndexOf("/") + 1)
+    .split("-")
+    .join(" ");
+
+  return (
+    <div className="greetings header" {...props}>
+      <MenuButton />
+      <div>{name}</div>
+    </div>
+  );
+};
+
+export const MenuButton = ({ left }) => {
   const { menu, setMenu } = useContext(UserContext);
 
   const handleClick = () => {
     SetPropertyForMenu(menu);
-    setTimeout(() => {
-      setMenu(!menu);
-    }, 100);
+    setMenu(!menu);
   };
-
-  useEffect(() => {
-    // SetPropertyForMenu(menu);
-  }, [menu]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -53,14 +73,14 @@ export const MenuButton = () => {
 
   return (
     <span class="material-symbols-rounded menuBtn" onClick={handleClick}>
-      {menu ? "keyboard_arrow_left" : "keyboard_arrow_right"}
+      {left ? "keyboard_arrow_left" : "keyboard_arrow_right"}
     </span>
   );
 };
 
-export const DashboardCard = ({ title, path, children }) => {
+export const DashboardCard = ({ title, path, children, ...props }) => {
   return (
-    <div className="dashboard-card">
+    <div className="dashboard-card" {...props}>
       <div className="card-head">
         <span>{title}</span>
         {path && <Link to={path}>View all</Link>}
@@ -69,4 +89,10 @@ export const DashboardCard = ({ title, path, children }) => {
     </div>
   );
 };
-
+export const DashboardUsageCard = ({ title, ...props }) => {
+  return (
+    <DashboardCard title="Statistical Overview" path={"energy-usage"}>
+      <div className="card-body"></div>
+    </DashboardCard>
+  );
+};

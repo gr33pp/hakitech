@@ -15,6 +15,7 @@ import Auth from "./pages/auth";
 import DashboardLayout from "./layout/Dashboard";
 import Dashboard from "./pages/dashboard";
 import { UserContext, UserProvider } from "./context";
+import Usage from "./pages/dashboard/usage";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,18 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
+        element: <Dashboard />,
+      },
+      {
+        path: "energy-usage",
+        element: <Usage />,
+      },
+      {
+        path: "payment-history",
+        element: <Dashboard />,
+      },
+      {
+        path: "settings",
         element: <Dashboard />,
       },
     ],

@@ -7,12 +7,12 @@ import { UserContext } from "../../../context";
 import PopMsg from "../../../components/popMsg";
 import { MenuButton } from "..";
 
-export default function DashboardNav({ index }) {
+export default function DashboardNav({ index, ...props }) {
   return (
-    <div className="dashboard-nav">
+    <div className="dashboard-nav" {...props}>
       <div className="nav-head">
         <i>
-          <MenuButton />
+          <MenuButton left />
         </i>
         <span>Hakitech</span>
       </div>

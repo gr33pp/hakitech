@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
+import { useEffect } from "react";
 
 export const features_data = [
   {
@@ -144,22 +145,22 @@ export const menuList = [
   {
     name: "Home",
     icon: "home",
-    link: "/dashboard",
+    link: "",
   },
   {
     name: "Usage",
     icon: "bar_chart",
-    link: "/usage",
+    link: "energy-usage",
   },
   {
     name: "Payment",
     icon: "payment",
-    link: "/payment",
+    link: "payment-history",
   },
   {
     name: "Settings",
     icon: "settings",
-    link: "/settings",
+    link: "settings",
   },
   {
     name: "Logout",
@@ -230,9 +231,46 @@ export const SetPropertyForMenu = (menu) => {
   const root = document.documentElement;
   root.style.setProperty("--d-translatex", !menu ? "0" : "-280px");
   root.style.setProperty("--d-container-translatex", !menu ? "-200px" : "0");
+  root.style.setProperty("--d-content-index", menu ? "0" : "1");
 };
 export const ResetPropertyForMenu = () => {
   const root = document.documentElement;
   root.style.removeProperty("--d-translatex");
   root.style.removeProperty("--d-container-translatex");
+  root.style.removeProperty("--d-content-index");
+};
+export const useOutsideClick = (ref, callback) => {
+  const handleClick = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      callback();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  });
+};
+
+export const getNavIndex = (pathname) => {
+  switch (pathname) {
+    case "/dashboard":
+      return 0;
+    case "/dashboard/energy-usage":
+      return 1;
+    case "/dashboard/payment-history":
+      return 2;
+    case "/dashboard/settings":
+      return 3;
+    default:
+      return 0;
+  }
+};
+
+export const useStopPropagation = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
 };
