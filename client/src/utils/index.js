@@ -308,7 +308,6 @@ export const fetchWeather = async () => {
   const apiUrl = process.env.REACT_APP_WEATHER_API_URL;
   const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
-  console.log(apiUrl, apiKey);
   try {
     const response = await fetch(
       `${apiUrl}?key=${apiKey}&q=${"102.215.57.224"}&aqi=no`
