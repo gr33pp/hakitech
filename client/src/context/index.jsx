@@ -10,7 +10,7 @@ export const UserProvider = ({ children }) => {
   const [balance, setBalance] = useState("$20.00");
   const [weather, setWeather] = useState(false);
 
-  // localStorage.setItem("authToken", "123456789");
+  localStorage.setItem("authToken", "123456789");
 
   const getUser = async () => {
     const userData = await fetchUserData(localStorage.getItem("authToken"));
