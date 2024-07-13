@@ -15,7 +15,7 @@ import Auth from "./pages/auth";
 import DashboardLayout from "./layout/Dashboard";
 import Dashboard from "./pages/dashboard";
 import { UserContext, UserProvider } from "./context";
-import Usage from "./pages/dashboard/usage";
+import { Payments, Usage } from "./pages/dashboard/paths";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path: "payment-history",
-        element: <Dashboard />,
+        element: <Payments />,
       },
       {
         path: "settings",

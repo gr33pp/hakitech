@@ -88,7 +88,7 @@ const Notification = () => {
   );
 };
 
-const NotificationsCard = ({ msg, setData, data, fixed }) => {
+export const NotificationsCard = ({ msg, setData, data, fixed }) => {
   return (
     <div className="notification-card-details">
       <span>{msg}</span>

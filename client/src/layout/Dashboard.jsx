@@ -62,7 +62,9 @@ const DashboardLayout = () => {
         <DashboardNav index={getNavIndex(location.pathname)} />
         <div className="dashboard-content" onClick={handleClick}>
           {renderHead()}
-          <Outlet />
+          <div className="dashboard-container">
+            <Outlet />
+          </div>
         </div>
         <UserInfo />
       </div>

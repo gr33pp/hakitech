@@ -1,7 +1,7 @@
 @import "@/utils/_mixins.scss";
 
 :root {
-  --nav-bg: #141414;
+  --nav-bg: #131313;
   --menu-item-width: 190px;
   --menu-x-pad: 30px;
 }
@@ -123,9 +123,9 @@
   &-details {
     display: grid;
     row-gap: 6px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
-    font-family: "Signika Negative", sans-serif;
+    // font-family: "Signika Negative", sans-serif;
 
     :last-child {
       opacity: 0.7;

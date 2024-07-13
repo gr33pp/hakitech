@@ -1,22 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context";
-import { ResetPropertyForMenu, SetPropertyForMenu } from "../../utils";
+import {
+  fetchWeather,
+  ResetPropertyForMenu,
+  SetPropertyForMenu,
+  usageData,
+} from "../../utils";
 import { Link, useLocation } from "react-router-dom";
+import { NotificationsCard } from "./navigation";
 
 export default function Dashboard() {
-  const { balance } = useContext(UserContext);
-
   return (
-    <div className="dashboard-container">
-      <div className="dashboard-balance">
-        <span className="balance">
-          <div>{balance}</div>
-          <span>Balance</span>
-        </span>
-        <span>Top up</span>
+    <>
+      <div className="banner">
+        <DashboardBalance />
       </div>
       <DashboardUsageCard />
-    </div>
+      <DashboardPaymentCard />
+    </>
   );
 }
 
@@ -89,10 +90,99 @@ export const DashboardCard = ({ title, path, children, ...props }) => {
     </div>
   );
 };
-export const DashboardUsageCard = ({ title, ...props }) => {
+export const DashboardUsageCard = ({ title, full, ...props }) => {
   return (
     <DashboardCard title="Statistical Overview" path={"energy-usage"}>
-      <div className="card-body"></div>
+      <div className="card-usage card">
+        {usageData.map(
+          (data, i) =>
+            !full && i < 2 && <DashboardUsageCardItem key={i} {...data} />
+        )}
+      </div>
     </DashboardCard>
+  );
+};
+
+export const DashboardPaymentCard = ({ title, full, ...props }) => {
+  const { history } = useContext(UserContext);
+  return (
+    <DashboardCard title="Payment History" path={"payment-history"}>
+      <div className="card-payment">
+        {history.length > 0 ? (
+          history.map((data, i) => (
+            <NotificationsCard key={i} msg={data.message} fixed />
+          ))
+        ) : (
+          <NotificationsCard msg="No payment history" fixed />
+        )}
+      </div>
+    </DashboardCard>
+  );
+};
+
+export const DashboardUsageCardItem = ({
+  icon,
+  title,
+  value,
+  desc,
+  ...props
+}) => {
+  return (
+    <div className="usage-card">
+      <div className="usage-card-icon">
+        <span class="material-symbols-rounded">{icon}</span>
+      </div>
+      <div className="usage-card-item" {...props}>
+        <div className="usage-card-item-title">{title}</div>
+        <div className="usage-card-item-value">{value}</div>
+        <div className="usage-card-item-desc">{desc}</div>
+      </div>
+    </div>
+  );
+};
+
+export const DashboardBalance = ({ ...props }) => {
+  const { balance, weather, setWeather } = useContext(UserContext);
+  useCallback(async () => {
+    const weather = await fetchWeather();
+    setWeather(weather);
+  }, [setWeather]);
+  return (
+    <>
+      <div className="dashboard-balance">
+        <span className="balance">
+          <div>{balance}</div>
+          <span>Balance</span>
+        </span>
+        <div>
+          <span className="action">Top up</span>
+          <Link to={"payment-history"} className="action">
+            View Usage
+          </Link>
+        </div>
+      </div>
+
+      <div className="weather">
+        <div className="weather-head">
+          <span>Weather</span>
+          <i class="material-symbols-rounded">cloud</i>
+        </div>
+
+        <span className="weather-details">
+          <div>
+            <span>{weather?.current?.condition?.text}</span>
+            <span>Feels like: {weather?.current?.feelslike_c}°C</span>
+          </div>
+          <div>
+            <img src={weather?.current?.condition?.icon} alt="" />
+            <span>{weather?.current?.temp_c}°C</span>
+          </div>
+          <div>
+            <span>Wind: {weather?.current?.wind_kph} km/h</span>
+            <span>Humidity: {weather?.current?.humidity}%</span>
+          </div>
+        </span>
+      </div>
+    </>
   );
 };

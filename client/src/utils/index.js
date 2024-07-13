@@ -157,11 +157,11 @@ export const menuList = [
     icon: "payment",
     link: "payment-history",
   },
-  {
-    name: "Settings",
-    icon: "settings",
-    link: "settings",
-  },
+  // {
+  //   name: "Settings",
+  //   icon: "settings",
+  //   link: "settings",
+  // },
   {
     name: "Logout",
     icon: "logout",
@@ -219,6 +219,8 @@ export const notifications = [
   },
 ];
 
+export const paymentHistory = [];
+
 export const energySavingTips = [
   "Turn off lights when not in use to save energy.",
   "Unplug electronics when not in use to reduce standby power consumption.",
@@ -273,4 +275,61 @@ export const getNavIndex = (pathname) => {
 export const useStopPropagation = (e) => {
   e.preventDefault();
   e.stopPropagation();
+};
+
+export const usageData = [
+  {
+    icon: "today",
+    title: "Today Usage",
+    value: "12.5 kWh",
+    desc: "Average daily usage",
+  },
+  {
+    icon: "weekend",
+    title: "This Week Usage",
+    value: "87.5 kWh",
+    desc: "Average weekly usage",
+  },
+  {
+    icon: "date_range",
+    title: "This Month Usage",
+    value: "375 kWh",
+    desc: "Average monthly usage",
+  },
+  {
+    icon: "calendar_month",
+    title: "This Year Usage",
+    value: "4500 kWh",
+    desc: "Average yearly usage",
+  },
+];
+
+export const fetchWeather = async () => {
+  const apiUrl = process.env.REACT_APP_WEATHER_API_URL;
+  const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+
+  console.log(apiUrl, apiKey);
+  try {
+    const response = await fetch(
+      `${apiUrl}?key=${apiKey}&q=${"102.215.57.224"}&aqi=no`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching weather data: ", error);
+  }
+};
+
+export const fetchIpAddress = async () => {
+  try {
+    const response = await fetch("https://api.ipify.org?format=json");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    // console.log(data.ip);
+    return data.ip;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
