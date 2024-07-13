@@ -108,7 +108,7 @@ export const NotificationsCard = ({ msg, setData, data, fixed }) => {
   );
 };
 
-const TipCard = () => {
+export const TipCard = () => {
   const tips = () => {
     const randomIndex = Math.floor(Math.random() * energySavingTips.length);
     const randomTip = energySavingTips[randomIndex];

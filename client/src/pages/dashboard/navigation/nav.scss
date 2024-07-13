@@ -223,7 +223,7 @@
   }
 }
 
-@media screen and (max-width: 1240px) {
+@media screen and (max-width: 1640px) {
   .dashboard {
     .nav {
       &-menu {
@@ -232,6 +232,11 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .dashboard {
   }
   .user {
     &-info {
