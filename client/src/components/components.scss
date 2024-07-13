@@ -140,8 +140,8 @@
     &.card {
       .usage-card {
         background: url("https://transparenttextures.com/patterns/asfalt-light.png");
+        outline: 1px solid #ffffff25;
         &:first-child {
-          outline: 1px solid #ffffff25;
           @include overlay(var(--bg-color), 0.4);
         }
         &:last-child {
