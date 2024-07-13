@@ -123,24 +123,44 @@
 .card {
   &-usage {
     display: grid;
-    // grid-auto-flow: column;
     grid-template-columns: repeat(
       auto-fit,
       minmax(clamp(0px, 90vw, 300px), 1fr)
     );
-    // row-gap: 20px;
     grid-gap: clamp(40px, 4vw, 60px);
     &.path {
       grid-template-columns: var(--usage-card-columns);
+      --value-size: clamp(18px, 2vw, 40px);
+      --icon-display: none;
+      --usage-card-columns: repeat(
+        auto-fit,
+        minmax(clamp(120px, 30vw, 300px), 1fr)
+      );
+      column-gap: 16px;
+
       .usage-card {
+        &-icon {
+          .material-symbols-rounded {
+            font-size: 20px;
+          }
+        }
+        &-item {
+          row-gap: 10px;
+          font-size: clamp(8px, 1vw, 16px);
+          word-break: nowrap;
+          white-space: nowrap;
+        }
         outline: 1px solid #ffffff25;
-        height: 120px;
+        min-height: 90px;
+        height: 100%;
+        padding: 10px 20px;
       }
     }
     &.card {
       .usage-card {
         background: url("https://transparenttextures.com/patterns/asfalt-light.png");
         outline: 1px solid #ffffff25;
+
         &:first-child {
           @include overlay(var(--bg-color), 0.4);
         }

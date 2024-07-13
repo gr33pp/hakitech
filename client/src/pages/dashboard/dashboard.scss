@@ -158,7 +158,7 @@
   &-card {
     display: grid;
     grid-auto-flow: row;
-    row-gap: 30px;
+    row-gap: calc(var(--d-pad-top) / 2);
 
     .card {
       &-head {
