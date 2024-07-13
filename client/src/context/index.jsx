@@ -28,7 +28,6 @@ export const UserProvider = ({ children }) => {
     fetchWeatherData();
   }, []);
 
-  console.log("pussy", user);
 
   return (
     <UserContext.Provider
