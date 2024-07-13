@@ -16,6 +16,7 @@ import DashboardLayout from "./layout/Dashboard";
 import Dashboard from "./pages/dashboard";
 import { UserContext, UserProvider } from "./context";
 import { Payments, Usage } from "./pages/dashboard/paths";
+import { Notification } from "./pages/dashboard/navigation";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "payment-history",
         element: <Payments />,
+      },
+      {
+        path: "notification",
+        element: <Notification path />,
       },
       {
         path: "settings",

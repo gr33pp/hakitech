@@ -157,11 +157,11 @@ export const menuList = [
     icon: "payment",
     link: "payment-history",
   },
-  // {
-  //   name: "Settings",
-  //   icon: "settings",
-  //   link: "settings",
-  // },
+  {
+    name: "Notifications",
+    icon: "notifications_unread",
+    link: "notification",
+  },
   {
     name: "Logout",
     icon: "logout",
@@ -265,7 +265,7 @@ export const getNavIndex = (pathname) => {
       return 1;
     case "/dashboard/payment-history":
       return 2;
-    case "/dashboard/settings":
+    case "/dashboard/notification":
       return 3;
     default:
       return 0;

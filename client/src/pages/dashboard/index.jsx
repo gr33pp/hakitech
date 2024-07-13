@@ -7,7 +7,7 @@ import {
   usageData,
 } from "../../utils";
 import { Link, useLocation } from "react-router-dom";
-import { NotificationsCard } from "./navigation";
+import { NotificationsCard, TipCard } from "./navigation";
 
 export default function Dashboard() {
   return (
@@ -15,6 +15,7 @@ export default function Dashboard() {
       <div className="banner">
         <DashboardBalance />
       </div>
+      <TipCard />
       <DashboardUsageCard />
       <DashboardPaymentCard />
     </>
@@ -22,14 +23,22 @@ export default function Dashboard() {
 }
 
 export const Greetings = () => {
-  const { user } = useContext(UserContext);
+  const { user, isActive } = useContext(UserContext);
+  const [state, setState] = useState(isActive);
 
+  useEffect(() => {
+    setState(isActive ? "online" : "offline");
+  }, [isActive]);
   return (
     <div className="greetings">
       <MenuButton />
       <div>
         <span>Hi, {user?.fullName}</span>
         <span>Welcome back</span>
+      </div>
+      <div className="status">
+        <span className={state}></span>
+        <span>{state}</span>
       </div>
       {/* <span class="material-symbols-rounded">location_home</span> */}
     </div>

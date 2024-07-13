@@ -26,19 +26,17 @@ export default function AuthCard({ btnText, mode, type }) {
       if (validateAccount(fullName, meterNumber, email, password) !== "sent") {
         setMsg(validateAccount(fullName, meterNumber, email, password));
       } else {
-        console.log("sent");
       }
     } else if (mode === "login") {
       if (validateAccount(email, password) !== "sent") {
         setMsg(validateAccount(email, password));
       } else {
-        console.log("sent");
       }
     } else if (mode === "reset") {
       if (validateAccount(email) !== "sent") {
         setMsg(validateAccount(email));
       } else {
-        console.log("sent");
+        // console.log("sent");
       }
     }
 

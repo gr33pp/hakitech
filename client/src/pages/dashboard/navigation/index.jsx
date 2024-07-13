@@ -4,7 +4,6 @@ import { energySavingTips, menuList, notifications } from "../../../utils";
 import MenuItems from "../../../components/menuItems";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../context";
-import PopMsg from "../../../components/popMsg";
 import { MenuButton } from "..";
 
 export default function DashboardNav({ index, ...props }) {
@@ -58,18 +57,22 @@ const UserProfileCard = ({ user }) => {
   );
 };
 
-const Notification = () => {
+export const Notification = ({ path }) => {
   const [notification, setNotification] = useState();
 
   useEffect(() => {
-    notifications && setNotification(notifications.filter((_, i) => i < 3));
+    notifications && !path
+      ? setNotification(notifications.filter((_, i) => i < 3))
+      : setNotification(notifications);
   }, []);
   return (
-    <div className="notification">
-      <div className="notification-head">
-        <span>Notifications</span>
-        <i class="material-symbols-rounded">notifications</i>{" "}
-      </div>
+    <div className="notification" id={path ? "path" : ""}>
+      {!path && (
+        <div className="notification-head">
+          <span>Notifications</span>
+          <i class="material-symbols-rounded">notifications</i>
+        </div>
+      )}
       <div className="notification-card">
         {notification && notification.length > 0 ? (
           notification.map((data, i) => (
@@ -105,7 +108,7 @@ export const NotificationsCard = ({ msg, setData, data, fixed }) => {
   );
 };
 
-const TipCard = () => {
+export const TipCard = () => {
   const tips = () => {
     const randomIndex = Math.floor(Math.random() * energySavingTips.length);
     const randomTip = energySavingTips[randomIndex];

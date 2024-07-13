@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [profile, setProfile] = useState(false);
   const [balance, setBalance] = useState("$20.00");
   const [weather, setWeather] = useState(false);
+  const [isActive, setIsActive] = useState(true);
 
   localStorage.setItem("authToken", "123456789");
 
@@ -28,8 +29,6 @@ export const UserProvider = ({ children }) => {
     fetchWeatherData();
   }, []);
 
-  console.log("pussy", user);
-
   return (
     <UserContext.Provider
       value={{
@@ -44,6 +43,8 @@ export const UserProvider = ({ children }) => {
         weather,
         setWeather,
         history: paymentHistory,
+        isActive,
+        setIsActive,
       }}
     >
       {children}
