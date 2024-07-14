@@ -89,7 +89,6 @@
   transform: translateX(-50%);
   padding: 0 10px;
   height: 50px;
-  border: 2px solid #521010ab;
   border-radius: 10px;
   display: grid;
   grid-auto-flow: column;
@@ -98,6 +97,11 @@
   background-color: var(--bg-color);
   font-weight: 300;
   animation: pop-slide-in 0.5s forwards;
+  border: 2px solid #ffffff25;
+
+  &.alert {
+    border: 2px solid #521010ab;
+  }
 
   .material-symbols-rounded {
     @include hover(var(--text-color), 0.1);
@@ -113,6 +117,9 @@
   from {
     transform: translateY(-80px) translateX(-50%) scale(1.1);
     opacity: 0;
+  }
+  50% {
+    opacity: 1;
   }
   to {
     transform: translateY(0) translateX(-50%);

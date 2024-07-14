@@ -56,6 +56,10 @@
     align-items: center;
     column-gap: clamp(10px, 1vw, 20px);
 
+    .menuBtn {
+      margin-left: -14px;
+    }
+
     > div:nth-child(2) {
       display: grid;
 
@@ -104,7 +108,7 @@
 
   &-balance {
     border: 1px solid #ffffff19;
-    background-color: #16161690;
+    // background-color: #16161670;
     border-radius: 12px;
     justify-self: start;
     display: grid;
@@ -116,11 +120,18 @@
     width: (calc(100% - 62px));
     // max-width: 450px;
     row-gap: 26px;
+    @include overlay(var(--bg-color), 0.3);
+
+    &::after {
+      background-image: url("https://transparenttextures.com/patterns/asfalt-light.png");
+      z-index: -1;
+    }
+
     .balance {
-      font-size: clamp(38px, 4.2vw, 52px);
+      font-size: clamp(38px, 4.2vw, 54px);
       font-weight: 500;
       display: grid;
-      grid-auto-flow: column;
+      grid-auto-flow: row;
       justify-content: start;
       align-content: center;
       column-gap: 15px;
@@ -128,12 +139,13 @@
       span {
         // display: none;
         align-self: last baseline;
-        padding: calc(var(--view-all-size) / 3) var(--view-all-size);
+        padding: 6px 16px;
         border-radius: 10rem;
-        font-size: var(--view-all-size);
+        font-size: calc(var(--view-all-size) * 1.2);
         opacity: 0.8;
         font-weight: 300;
-        margin-bottom: 12px;
+        margin-bottom: -20px;
+        justify-self: start;
         @include overlay(#ffffff, 0.05);
       }
     }
@@ -243,7 +255,7 @@
         grid-auto-flow: row;
         column-gap: 10px;
         // align-items: center;
-        font-size: clamp(14px, 1.5vw, 20px);
+        font-size: clamp(14px, 1.5vw, 120%);
         font-weight: 400;
         @include overlay(var(--bg-color), 0.2);
 
@@ -320,6 +332,15 @@
       grid-template-columns: calc(100% - 5px);
       grid-template-rows: repeat(2, auto);
       row-gap: var(--d-pad-top);
+    }
+    &-balance {
+      .balance {
+        grid-auto-flow: column;
+
+        span {
+          margin-bottom: 18%;
+        }
+      }
     }
   }
 }

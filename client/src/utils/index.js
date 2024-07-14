@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
 import { useEffect } from "react";
+import axios from "axios";
 
 export const features_data = [
   {
@@ -107,7 +108,7 @@ export function validateAccount(fullName, meterNumber, email, password) {
   }
 
   // Validate password
-  if (!password || password.length < 8) {
+  if (!password || password.length < 6) {
     return "Password must be at least 8 characters long.";
   }
 
@@ -123,7 +124,7 @@ export function validateLogin(email, password) {
   }
 
   // Validate password
-  if (!password || password.length < 8) {
+  if (!password || password.length <= 0) {
     return "Invalid password.";
   }
 
@@ -169,6 +170,16 @@ export const menuList = [
   },
 ];
 
+export const saveToken = (token) => {
+  sessionStorage.setItem("authToken", token);
+};
+export const getToken = () => {
+  return sessionStorage.getItem("authToken");
+};
+export const deleteToken = () => {
+  sessionStorage.removeItem("authToken");
+};
+
 // export const Navigate = ({ link, children }) => {
 //   const navigate = useNavigate();
 //   navigate(link);
@@ -182,13 +193,17 @@ const dummyUser = {
   meterNumber: "123456789",
 };
 
-export const fetchUserData = async () => {
-  const data = await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(dummyUser);
-    }, 0);
-  });
-  return data;
+export const convertKeys = (inputObj) => {
+  const { user, email, meter_number, ...rest } = inputObj;
+
+  const outputObj = {
+    fullName: user,
+    email: email,
+    meterNumber: meter_number,
+    ...rest,
+  };
+
+  return outputObj;
 };
 
 export const notifications = [
@@ -332,3 +347,13 @@ export const fetchIpAddress = async () => {
     console.log(error.message);
   }
 };
+
+export function convertToCurrency(balance) {
+  const options = { style: "currency", currency: "USD" };
+  if (balance) {
+    const amount = balance / 10;
+    return amount.toLocaleString("en-US", options);
+  } else {
+    return (0).toLocaleString("en-US", options);
+  }
+}

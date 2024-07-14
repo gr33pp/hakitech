@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context";
 import {
+  convertToCurrency,
   fetchWeather,
   ResetPropertyForMenu,
   SetPropertyForMenu,
@@ -23,12 +24,13 @@ export default function Dashboard() {
 }
 
 export const Greetings = () => {
-  const { user, isActive } = useContext(UserContext);
-  const [state, setState] = useState(isActive);
+  const { user } = useContext(UserContext);
+  const [state, setState] = useState(user?.active);
 
   useEffect(() => {
-    setState(isActive ? "online" : "offline");
-  }, [isActive]);
+    console.log(user?.active, "false");
+    setState(user?.active ? "online" : "offline");
+  }, [user?.active]);
   return (
     <div className="greetings">
       <MenuButton />
@@ -151,16 +153,17 @@ export const DashboardUsageCardItem = ({
 };
 
 export const DashboardBalance = ({ ...props }) => {
-  const { balance, weather, setWeather } = useContext(UserContext);
+  const { user, weather, setWeather } = useContext(UserContext);
   useCallback(async () => {
     const weather = await fetchWeather();
     setWeather(weather);
   }, [setWeather]);
+
   return (
     <>
       <div className="dashboard-balance">
         <span className="balance">
-          <div>{balance}</div>
+          <div>{convertToCurrency(user?.balance)}</div>
           <span>Balance</span>
         </span>
         <div>
