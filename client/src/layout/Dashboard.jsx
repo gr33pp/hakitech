@@ -4,23 +4,23 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import DashboardNav, { UserInfo } from "../pages/dashboard/navigation";
 import "@/pages/dashboard/dashboard.scss";
 import { UserContext } from "../context";
-import { fetchUserData, getNavIndex, ResetPropertyForMenu } from "../utils";
+import { getNavIndex, ResetPropertyForMenu } from "../utils";
 import { DashboardHead, Greetings } from "../pages/dashboard";
+import { fetchUserData } from "../utils/api";
 
 const DashboardLayout = () => {
   const location = useLocation();
-  const { setMenu, setUser } = useContext(UserContext);
+  const { setMenu, setUser, getUser } = useContext(UserContext);
 
   const isAuthenticated = () => {
-    return !!localStorage.getItem("authToken");
+    return !!sessionStorage.getItem("authToken");
   };
 
-  useCallback(async () => {
+  useEffect(() => {
     if (isAuthenticated) {
-      const userData = await fetchUserData(localStorage.getItem("authToken"));
-      setUser(userData);
+      getUser();
     }
-  }, [setUser]);
+  }, [getUser]);
 
   //   const renderNav = () => {
   //     switch (location.pathname) {

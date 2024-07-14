@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
-import { fetchUserData, fetchWeather, paymentHistory } from "../utils";
+import { fetchWeather, getToken, paymentHistory } from "../utils";
+import { fetchUserData } from "../utils/api";
 
 export const UserContext = createContext();
 
@@ -7,20 +8,20 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(false);
   const [menu, setMenu] = useState(false);
   const [profile, setProfile] = useState(false);
-  const [balance, setBalance] = useState("$20.00");
   const [weather, setWeather] = useState(false);
-  const [isActive, setIsActive] = useState(true);
+  // const [isActive, setIsActive] = useState(true);
 
-  localStorage.setItem("authToken", "123456789");
+  // localStorage.removeItem("authToken");
 
   const getUser = async () => {
-    const userData = await fetchUserData(localStorage.getItem("authToken"));
-    setUser(userData);
+    if (getToken() !== null) {
+      const userData = await fetchUserData();
+      setUser(userData);
+    }
   };
 
   useEffect(() => {
     getUser();
-
     const fetchWeatherData = async () => {
       const weather = await fetchWeather();
       setWeather(weather);
@@ -34,17 +35,18 @@ export const UserProvider = ({ children }) => {
       value={{
         user,
         setUser,
+        getUser,
         menu,
         setMenu,
         profile,
         setProfile,
-        balance,
-        setBalance,
+        // balance,
+        // setBalance,
         weather,
         setWeather,
         history: paymentHistory,
-        isActive,
-        setIsActive,
+        // isActive,
+        // setIsActive,
       }}
     >
       {children}

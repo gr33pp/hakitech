@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import Button from "./button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PopMsg from "./popMsg";
-import { validateAccount } from "../utils";
+import {
+  deleteToken,
+  saveToken,
+  validateAccount,
+  validateEmailRecovery,
+  validateLogin,
+} from "../utils";
+import { login, register } from "../utils/api";
 
 export default function AuthCard({ btnText, mode, type }) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -14,6 +22,7 @@ export default function AuthCard({ btnText, mode, type }) {
     setEmail("");
     setPassword("");
     setFullName("");
+    setMeterNumber("");
   };
   useEffect(() => {
     setTimeout(() => {
@@ -21,26 +30,39 @@ export default function AuthCard({ btnText, mode, type }) {
     }, 300);
   }, [type]);
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    deleteToken();
+  }, []);
+
+  const handleSubmit = async () => {
     if (mode === "signup") {
-      if (validateAccount(fullName, meterNumber, email, password) !== "sent") {
+      if (validateAccount(fullName, meterNumber, email, password)) {
         setMsg(validateAccount(fullName, meterNumber, email, password));
       } else {
+        const data = await register(fullName, meterNumber, email, password);
+        setMsg(data.msg);
+        navigate("/login");
+        clearInput();
       }
     } else if (mode === "login") {
-      if (validateAccount(email, password) !== "sent") {
-        setMsg(validateAccount(email, password));
+      if (validateLogin(email, password)) {
+        setMsg(validateLogin(email, password));
       } else {
+        const data = await login(email, password);
+        setMsg(data.msg);
+        if (data.access_token) {
+          saveToken(data.access_token);
+          navigate("/dashboard");
+        }
+        clearInput();
       }
     } else if (mode === "reset") {
-      if (validateAccount(email) !== "sent") {
-        setMsg(validateAccount(email));
+      if (validateAccount(email)) {
+        setMsg(validateEmailRecovery(email));
       } else {
-        // console.log("sent");
+        // setMsg(reset(email));
       }
     }
-
-    // clearInput();
   };
 
   return (

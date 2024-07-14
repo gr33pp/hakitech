@@ -5,7 +5,7 @@
   width: 85% !important;
   display: grid;
   width: 100%;
-  height: clamp(430px, 100dvh, 590px);
+  height: clamp(500px, 100dvh, 590px);
   min-height: 75dvh;
   border: 1px solid #ffffff25;
   border-radius: 48px;
@@ -72,7 +72,7 @@
         outline: none;
         color: inherit;
         font-weight: 400;
-        opacity: 0.7;
+        opacity: 0.85;
 
         &::placeholder {
           color: #ffffff80;
@@ -194,6 +194,7 @@
     width: 100% !important;
     border: none;
     grid-template-columns: repeat(2, 100%);
+    border-radius: 0px;
     // height: auto;
 
     &-card {
