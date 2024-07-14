@@ -237,11 +237,12 @@ export const notifications = [
 export const paymentHistory = [];
 
 export const energySavingTips = [
-  "Turn off lights when not in use to save energy.",
-  "Unplug electronics when not in use to reduce standby power consumption.",
-  "Use energy-efficient appliances and light bulbs to save electricity.",
-  "Set your thermostat to an energy-saving temperature to reduce heating and cooling costs.",
-  "Insulate your home properly to prevent energy loss and save on heating and cooling.",
+  "Turn off lights in unoccupied rooms and make use of natural light whenever possible.",
+  "Unplug chargers and electronics when not in use to prevent phantom energy consumption.",
+  "Replace old and inefficient electronics with newer models that are more energy-efficient.",
+  "Enable power-saving modes on computers and gaming consoles.",
+  "Use power strips to easily turn off multiple devices at once when not in use.",
+  "Switch to energy-efficient LED light bulbs.",
 ];
 
 export const SetPropertyForMenu = (menu) => {
@@ -307,15 +308,15 @@ export const usageData = [
   },
   {
     icon: "date_range",
-    title: "This Month Usage",
-    value: "375 kWh",
-    desc: "Average monthly usage",
+    title: "Realtime energy generated",
+    value: "3 MWh",
+    desc: "energy generated",
   },
   {
     icon: "calendar_month",
-    title: "This Year Usage",
-    value: "4500 kWh",
-    desc: "Average yearly usage",
+    title: "Energy generated",
+    value: "45.2 MWh",
+    desc: "Average energy generated",
   },
 ];
 
@@ -357,3 +358,18 @@ export function convertToCurrency(balance) {
     return (0).toLocaleString("en-US", options);
   }
 }
+
+export const setupInfo = [
+  {
+    title: "200 Solar panels",
+    icon: "solar_power",
+  },
+  {
+    title: "200 kWh Solar Capacity",
+    icon: "power",
+  },
+  {
+    title: "1MWh Storage Capacity",
+    icon: "battery_status_good",
+  },
+];

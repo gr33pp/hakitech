@@ -75,7 +75,7 @@
 
         > * {
           border-radius: 10rem !important;
-          padding: 14px 34px;
+          padding: clamp(10px, 1.4vw, 16px) 34px;
           font-size: clamp(11px, 2vw, 16px);
         }
       }

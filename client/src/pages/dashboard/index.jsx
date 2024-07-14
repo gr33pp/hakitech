@@ -13,6 +13,13 @@ import { NotificationsCard, TipCard } from "./navigation";
 export default function Dashboard() {
   return (
     <>
+      <DashboardSetup />
+      <DashboardCard
+        title={"Account"}
+        style={{
+          margin: "0 0 clamp(-60px, calc(-1 * var(--d-pad-x)), -30px) 0",
+        }}
+      />
       <div className="banner">
         <DashboardBalance />
       </div>
@@ -175,11 +182,6 @@ export const DashboardBalance = ({ ...props }) => {
       </div>
 
       <div className="weather">
-        <div className="weather-head">
-          <span>Weather</span>
-          <i class="material-symbols-rounded">cloud</i>
-        </div>
-
         <span className="weather-details">
           <div>
             <span>{weather?.current?.condition?.text}</span>
@@ -196,5 +198,18 @@ export const DashboardBalance = ({ ...props }) => {
         </span>
       </div>
     </>
+  );
+};
+
+const DashboardSetup = () => {
+  const { setup } = useContext(UserContext);
+  return (
+    <DashboardCard title="Setup information">
+      <div className="dashboard-setup">
+        {setup.map((data, i) => (
+          <NotificationsCard key={i} msg={data.title} icon={data.icon} fixed />
+        ))}
+      </div>
+    </DashboardCard>
   );
 };

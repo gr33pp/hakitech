@@ -16,6 +16,7 @@ export default function Auth({ type }) {
         authRef.current.scrollTo({
           left: 0,
           behavior: "smooth",
+
         });
       }
     },

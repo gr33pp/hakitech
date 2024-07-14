@@ -11,7 +11,6 @@ export const login = async (email, password) => {
     formData.append("password", password);
 
     const response = await api.post(`/auth/login`, formData);
-    console.log(response);
     return response.data;
   } catch (error) {
     return error.response?.data || "Registration failed";

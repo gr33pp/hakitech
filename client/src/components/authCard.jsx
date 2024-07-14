@@ -18,6 +18,7 @@ export default function AuthCard({ btnText, mode, type }) {
   const [fullName, setFullName] = useState("");
   const [meterNumber, setMeterNumber] = useState("");
   const [msg, setMsg] = useState(false);
+  const [loading, setLoading] = useState(false);
   const clearInput = () => {
     setEmail("");
     setPassword("");
@@ -35,6 +36,7 @@ export default function AuthCard({ btnText, mode, type }) {
   }, []);
 
   const handleSubmit = async () => {
+    setLoading(true);
     if (mode === "signup") {
       if (validateAccount(fullName, meterNumber, email, password)) {
         setMsg(validateAccount(fullName, meterNumber, email, password));
@@ -63,6 +65,7 @@ export default function AuthCard({ btnText, mode, type }) {
         // setMsg(reset(email));
       }
     }
+    setLoading(false);
   };
 
   return (
@@ -118,7 +121,7 @@ export default function AuthCard({ btnText, mode, type }) {
           <span class="material-symbols-rounded">lock</span>
         </label>
       )}
-      <Button onClick={handleSubmit} text={btnText} />
+      <Button onClick={handleSubmit} text={btnText} loading={loading} />
       {mode === "login" && (
         <div className="options">
           <Link to={"/reset"}>Forgotten Password?</Link>

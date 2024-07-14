@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./nav.scss";
-import { energySavingTips, menuList, notifications } from "../../../utils";
+import { energySavingTips, menuList } from "../../../utils";
 import MenuItems from "../../../components/menuItems";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../context";
@@ -58,12 +58,16 @@ const UserProfileCard = ({ user }) => {
 };
 
 export const Notification = ({ path }) => {
+  const { notifications } = useContext(UserContext);
   const [notification, setNotification] = useState();
 
   useEffect(() => {
-    notifications && !path
-      ? setNotification(notifications.filter((_, i) => i < 3))
-      : setNotification(notifications);
+    if (!notification) {
+      console.log("pussy");
+      notifications && !path
+        ? setNotification(notifications.filter((_, i) => i < 3))
+        : setNotification(notifications);
+    }
   }, []);
   return (
     <div className="notification" id={path ? "path" : ""}>
@@ -91,9 +95,19 @@ export const Notification = ({ path }) => {
   );
 };
 
-export const NotificationsCard = ({ msg, setData, data, fixed }) => {
+export const NotificationsCard = ({
+  msg,
+  setData,
+  data,
+  fixed,
+  icon,
+  children,
+  ...props
+}) => {
   return (
-    <div className="notification-card-details">
+    <div className="notification-card-details" {...props}>
+      {children}
+      {icon && <span className="material-symbols-rounded icon">{icon}</span>}
       <span>{msg}</span>
       {!fixed && (
         <span
