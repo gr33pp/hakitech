@@ -4,8 +4,10 @@
 }
 
 @mixin hover($color, $opacity) {
-  position: relative;
-  overflow: hidden;
+  & {
+    position: relative;
+    overflow: hidden;
+  }
   &::after {
     z-index: -1;
     transition: 0.25s ease-in;
@@ -26,8 +28,10 @@
 }
 
 @mixin overlay($color, $opacity) {
-  position: relative;
-  overflow: hidden;
+  & {
+    position: relative;
+    overflow: hidden;
+  }
   &::after {
     z-index: 0;
     position: absolute;

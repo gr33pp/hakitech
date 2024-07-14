@@ -10,12 +10,13 @@ export default function Auth({ type }) {
       if (type === "login") {
         authRef.current.scrollTo({
           left: authRef.current.scrollWidth,
-          behavior: e ? e.behaviour : "smooth",
+          behavior: "smooth",
         });
       } else {
         authRef.current.scrollTo({
           left: 0,
-          behavior: e ? e.behaviour : "smooth",
+          behavior: "smooth",
+
         });
       }
     },
@@ -27,7 +28,7 @@ export default function Auth({ type }) {
 
   useEffect(() => {
     const handleResize = () => {
-      scrollToPage({ behavior: "instant" });
+      scrollToPage();
     };
 
     window.addEventListener("resize", handleResize);

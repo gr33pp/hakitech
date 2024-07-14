@@ -4,8 +4,7 @@
   justify-self: center;
   width: 85% !important;
   display: grid;
-  width: 100%;
-  height: clamp(500px, 100dvh, 590px);
+  height: clamp(510px, 100dvh, 590px);
   min-height: 75dvh;
   border: 1px solid #ffffff25;
   border-radius: 48px;
@@ -14,6 +13,8 @@
   overflow: hidden;
 
   &-form {
+    opacity: 0;
+    animation: puff 0.5s forwards 0.5s;
     // background-color: #ffffff25;
     display: grid;
     row-gap: 20px;
@@ -117,7 +118,7 @@
         font-weight: 500;
       }
       > div {
-        font-size: clamp(24px, 3.5vw, 34px);
+        font-size: clamp(30px, 3.5vw, 38px);
       }
       > span {
         font-size: clamp(12px, 1vw, 18px);
@@ -179,6 +180,10 @@
       transform: translate3d(0, 0, 0);
       width: calc(100% - 40px);
     }
+  }
+
+  .button {
+    height: 28px;
   }
 }
 

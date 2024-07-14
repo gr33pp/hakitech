@@ -20,7 +20,7 @@ const DashboardLayout = () => {
     if (isAuthenticated) {
       getUser();
     }
-  }, [getUser]);
+  }, []);
 
   //   const renderNav = () => {
   //     switch (location.pathname) {

@@ -1,5 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
-import { fetchWeather, getToken, paymentHistory } from "../utils";
+import {
+  fetchWeather,
+  getToken,
+  notifications,
+  paymentHistory,
+  setupInfo,
+} from "../utils";
 import { fetchUserData } from "../utils/api";
 
 export const UserContext = createContext();
@@ -14,14 +20,14 @@ export const UserProvider = ({ children }) => {
   // localStorage.removeItem("authToken");
 
   const getUser = async () => {
-    if (getToken() !== null) {
+    if (getToken() !== null && !user) {
       const userData = await fetchUserData();
       setUser(userData);
     }
   };
 
   useEffect(() => {
-    getUser();
+    // getUser();
     const fetchWeatherData = async () => {
       const weather = await fetchWeather();
       setWeather(weather);
@@ -35,7 +41,7 @@ export const UserProvider = ({ children }) => {
       value={{
         user,
         setUser,
-        getUser,
+        getUser: () => getUser(),
         menu,
         setMenu,
         profile,
@@ -45,6 +51,8 @@ export const UserProvider = ({ children }) => {
         weather,
         setWeather,
         history: paymentHistory,
+        notifications: notifications,
+        setup: setupInfo,
         // isActive,
         // setIsActive,
       }}

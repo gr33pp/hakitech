@@ -1,5 +1,5 @@
 import axios from "axios";
-import { convertKeys, getToken } from ".";
+import { convertKeys, deleteToken, getToken } from ".";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -11,7 +11,6 @@ export const login = async (email, password) => {
     formData.append("password", password);
 
     const response = await api.post(`/auth/login`, formData);
-    console.log(response);
     return response.data;
   } catch (error) {
     return error.response?.data || "Registration failed";
@@ -42,6 +41,7 @@ export const fetchUserData = async () => {
     });
     return convertKeys(response.data);
   } catch (error) {
+    deleteToken();
     console.error("Error fetching user data: ", error);
   }
 };
