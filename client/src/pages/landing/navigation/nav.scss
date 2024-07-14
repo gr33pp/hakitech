@@ -17,7 +17,7 @@
 
     &-logo {
       text-transform: uppercase;
-      font-size: 22px;
+      font-size: clamp(22px, 2vw, 26px);
       font-weight: 500;
     }
 
@@ -35,7 +35,7 @@
       grid-template-columns: 120px 1fr auto;
       justify-content: space-between;
       align-items: center;
-      padding: clamp(15px, 3%, 30px) calc(var(--nav-pad) + var(--landing-pad));
+      padding: clamp(20px, 3%, 30px) calc(var(--nav-pad) + var(--landing-pad));
       background-color: var(--bg-color-alt);
       backdrop-filter: blur(3.5px) saturate(50%);
       width: calc(100% - calc((var(--nav-pad) + var(--landing-pad)) * 2));
@@ -81,7 +81,7 @@ a {
 
 @media screen and (max-width: 1024px) {
   :root {
-    --nav-pad: 10px;
+    --nav-pad: 12px;
   }
   .landing {
     &-nav {
@@ -89,7 +89,14 @@ a {
         display: none !important;
       }
       &-action {
-        display: none !important;
+        // display: none !important;
+        > * {
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          border: 1px solid #ffffff25;
+          padding-right: 10px;
+          padding-left: 10px;
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { convertKeys, getToken } from ".";
+import { convertKeys, deleteToken, getToken } from ".";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -42,6 +42,7 @@ export const fetchUserData = async () => {
     });
     return convertKeys(response.data);
   } catch (error) {
+    deleteToken();
     console.error("Error fetching user data: ", error);
   }
 };

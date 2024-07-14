@@ -4,7 +4,6 @@
   justify-self: center;
   width: 85% !important;
   display: grid;
-  width: 100%;
   height: clamp(500px, 100dvh, 590px);
   min-height: 75dvh;
   border: 1px solid #ffffff25;
@@ -14,6 +13,8 @@
   overflow: hidden;
 
   &-form {
+    opacity: 0;
+    animation: puff 0.5s forwards 0.5s;
     // background-color: #ffffff25;
     display: grid;
     row-gap: 20px;
