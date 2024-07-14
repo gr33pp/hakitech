@@ -1,0 +1,317 @@
+@import "@/utils/_mixins.scss";
+
+:root {
+  --icon-display: grid;
+  --value-size: clamp(30px, 3.5vw, 52px);
+  --usage-card-columns: repeat(auto-fit, minmax(clamp(0px, 90vw, 320px), 1fr));
+  --loadin-timming-func: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+// Button
+.button {
+  & {
+    background-color: var(--text-color);
+    padding: 9px 24px;
+    font-family: inherit;
+    font-weight: 500;
+    border-radius: 4px;
+    color: var(--bg-color);
+    font-size: 15px;
+    cursor: pointer;
+    display: grid;
+    grid-auto-flow: column;
+    place-content: center;
+    align-items: center;
+    // column-gap: 10px;
+    overflow: hidden;
+    @include hover(var(--bg-color), 0.1);
+
+    > span:first-child {
+      display: grid;
+      justify-content: center;
+      width: 0;
+      max-width: 26px;
+      overflow: hidden;
+      transition: 0.3s ease-in, 0.1s ease-in opacity;
+      padding-right: 0;
+      opacity: 0;
+      z-index: 0;
+    }
+    &.loading {
+      @include overlay(var(--text-color), 0.7);
+      &:after {
+        z-index: 1;
+      }
+      > span:first-child {
+        padding-right: 10px;
+        transition-delay: 0.2s !important;
+        opacity: 1;
+        width: 26px;
+      }
+    }
+  }
+
+  .material-symbols-rounded {
+    align-self: center;
+    animation: rotate 1.2s linear infinite;
+    transition-timing-function: var(--loading-timming-func);
+    font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 0;
+  }
+
+  &.stroke {
+    @include hover(var(--text-color), 0.1);
+    & {
+      background-color: transparent;
+      color: var(--text-color);
+      outline: #ffffffc7 solid 1px;
+    }
+  }
+}
+
+.CTA {
+  display: grid;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+  font-size: clamp(16px, 3.5vw, 28px);
+  font-weight: 400;
+
+  &-text {
+    & {
+      font-weight: 300;
+    }
+    > span {
+      font-weight: 500;
+      padding-right: 10px;
+    }
+  }
+
+  &-actions {
+    justify-self: center;
+    max-width: 320px;
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 20px;
+
+    > * {
+      border-radius: 10rem;
+    }
+  }
+}
+
+.footer {
+  border-top: 1px solid #ffffff25;
+  padding: 10px;
+  background-color: var(--bg-color);
+  margin-top: 20px;
+  text-align: center;
+  font-size: clamp(12px, 2.8vw, 18px);
+  display: grid;
+  justify-content: space-between;
+  grid-auto-flow: column;
+  align-items: center;
+
+  span {
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+.pop {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  width: max-content;
+  z-index: 100;
+  align-items: center;
+  align-content: center;
+  transform: translateX(-50%);
+  padding: 0 10px;
+  height: 50px;
+  border-radius: 10px;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 20px;
+  font-size: 14px;
+  background-color: var(--bg-color);
+  font-weight: 300;
+  animation: pop-slide-in 0.5s forwards;
+  border: 2px solid #ffffff25;
+
+  &.alert {
+    border: 2px solid #521010ab;
+  }
+
+  .material-symbols-rounded {
+    @include hover(var(--text-color), 0.1);
+    & {
+      font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 20;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+  }
+}
+
+@keyframes pop-slide-in {
+  from {
+    transform: translateY(-80px) translateX(-50%) scale(1.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card {
+  &-usage {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(clamp(0px, 90vw, 300px), 1fr)
+    );
+    grid-gap: clamp(40px, 4vw, 60px);
+    &.path {
+      grid-template-columns: var(--usage-card-columns);
+      --value-size: clamp(24px, 2vw, 40px);
+      --icon-display: none;
+      --usage-card-columns: repeat(
+        auto-fit,
+        minmax(clamp(120px, 30vw, 300px), 1fr)
+      );
+      column-gap: 16px;
+
+      .usage-card {
+        &-icon {
+          .material-symbols-rounded {
+            font-size: 20px;
+          }
+        }
+        &-item {
+          row-gap: 10px;
+          font-size: clamp(8px, 1vw, 16px);
+          word-break: nowrap;
+          white-space: nowrap;
+        }
+        & {
+          outline: 1px solid #ffffff25;
+          min-height: 90px;
+          height: 100%;
+          padding: 10px 20px;
+        }
+      }
+    }
+    &.card {
+      .usage-card {
+        background: url("https://transparenttextures.com/patterns/asfalt-light.png");
+        outline: 1px solid #ffffff25;
+        @include overlay(var(--bg-color), 0.7);
+
+        &:first-child {
+        }
+        &:last-child {
+          // @include overlay(#161616, 0.4);
+        }
+      }
+    }
+
+    .usage {
+      &-card {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: auto 1fr;
+        column-gap: clamp(24px, 4vw, 50px);
+        justify-content: start;
+        // align-items: center;
+        padding: 30px;
+        border-radius: 10px;
+        height: 180px;
+        margin: 0 5px;
+
+        &-icon {
+          display: var(--icon-display);
+          place-items: center;
+          padding: 10px;
+          .material-symbols-rounded {
+            outline: 2px solid var(--text-color-alt);
+            // background: #ffffff15;
+            padding: 20px;
+            border-radius: 24px;
+            font-size: clamp(30px, 2.8vw, 52px);
+            font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 32;
+
+            @include overlay(#ffffff30, 1);
+            &::after {
+              filter: blur(50px);
+              z-index: 0;
+            }
+          }
+        }
+        &-item {
+          display: grid;
+          align-content: space-evenly;
+          font-size: clamp(12px, 2vw, 18px);
+          > :first-child {
+            opacity: 0.7;
+          }
+          > :last-child {
+            opacity: 0.85;
+          }
+
+          &-value {
+            font-size: var(--value-size);
+            font-weight: 500;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  &-payment {
+    margin-bottom: 20px;
+    > div {
+      padding: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 820px) and (min-width: 730px) {
+  :root {
+    --icon-display: none;
+  }
+}
+@media screen and (max-width: 1240px) and (min-width: 920px) {
+  :root {
+    --icon-display: none;
+  }
+}
+
+@media screen and (max-width: 2048px) and (min-width: 1640px) {
+  :root {
+    --usage-card-columns: repeat(
+      auto-fit,
+      minmax(clamp(0px, 90vw, 500px), 1fr)
+    );
+    --icon-display: none;
+    --value-size: clamp(30px, 3.5vw, 50px);
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  :root {
+    --usage-card-columns: repeat(2, 1fr);
+  }
+}
