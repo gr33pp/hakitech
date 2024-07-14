@@ -6,9 +6,10 @@ Install the required python modules
 
 ```
 pip install -r reqirements.txt
-``
+```
 
-Start the backend server with 
+Start the backend server with
+
 ```
 python3 app.py
 ```
