@@ -1,8 +1,0 @@
-flask
-python_dotenv
-flask_jwt_extended
-datetime
-flask_sqlalchemy
-flask_cors
-werkzeug
-
