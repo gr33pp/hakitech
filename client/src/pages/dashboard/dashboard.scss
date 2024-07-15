@@ -381,6 +381,10 @@
       grid-template-columns: calc(100% - 5px);
       grid-template-rows: repeat(2, auto);
       row-gap: var(--d-pad-top);
+
+      .weather {
+        height: 230px;
+      }
     }
     &-balance {
       .balance {
@@ -394,7 +398,7 @@
   }
 }
 
-@media screen and (max-width: 1640px) and (min-width: 769px) {
+@media screen and (max-width: 1640px) and (min-width: 768px) {
   .dashboard {
     --d-pad-x: clamp(0px, 1vw, 30px);
     width: calc(100vw + 350px);

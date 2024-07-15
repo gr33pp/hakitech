@@ -5,10 +5,15 @@ import { notifications } from "../../../utils";
 import { NotificationsCard } from "../navigation";
 import "./path.scss";
 import { UserContext } from "@/context";
-import { Component } from "@/charts";
 
 export const Usage = () => {
-  return <div className="card-usage path">{/* <Component /> */}</div>;
+  return (
+    <div className="card-usage path">
+      {usageData.map((data, i) => (
+        <DashboardUsageCardItem key={i} {...data} />
+      ))}
+    </div>
+  );
 };
 
 export const Payments = () => {

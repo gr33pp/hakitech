@@ -219,6 +219,7 @@
         background: url("https://transparenttextures.com/patterns/asfalt-light.png");
         outline: 1px solid #ffffff25;
         @include overlay(var(--bg-color), 0.7);
+        max-height: 28vw;
 
         &:first-child {
         }
