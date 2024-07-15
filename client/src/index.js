@@ -17,6 +17,7 @@ import Dashboard from "./pages/dashboard";
 import { UserContext, UserProvider } from "./context";
 import { Payments, Usage } from "./pages/dashboard/paths";
 import { Notification } from "./pages/dashboard/navigation";
+import App from "./App";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
     ],
+  },
+  {
+    path: "test",
+    element: <App />,
   },
   { path: "*", element: <div>404</div> },
 ]);

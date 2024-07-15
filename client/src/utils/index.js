@@ -9,40 +9,34 @@ export const features_data = [
     title: "Real-Time Monitoring",
     description:
       "Track energy usage in real-time across all connected devices to stay informed.",
-    image: "image1.jpg",
   },
   {
     icon: "lightbulb",
     title: "Personalized Insights",
     description:
       "Receive tailored recommendations to optimize energy consumption based on your usage.",
-    image: "image2.jpg",
   },
   {
     icon: "dashboard",
     title: "User-Friendly Dashboard",
     description:
       "Navigate an intuitive and visually appealing dashboard that makes managing energy consumption simple",
-    image: "image3.jpg",
   },
   {
     icon: "general_device",
     title: "Remote Access",
     description:
       "Control and monitor your energy usage from anywhere with our website.",
-    image: "image4.jpg",
   },
   {
     icon: "monitoring",
     title: "Energy Consumption Analytics",
     description: "Visualize and optimize energy usage with detailed analytics.",
-    image: "image4.jpg",
   },
   {
     icon: "history_edu",
     title: "Historical Data and Reports",
     description: "Access detailed historical energy usage reports.",
-    image: "image4.jpg",
   },
 ];
 

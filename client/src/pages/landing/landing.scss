@@ -12,7 +12,7 @@
   gap: 40px;
   width: 100vw;
   justify-self: center;
-  padding: var(--landing-pad-top) (var(--landing-pad)) 0;
+  padding: clamp(95px, var(--landing-pad-top), 1200px) (var(--landing-pad)) 0;
   width: calc(100% - var(--landing-pad) * 2);
   max-width: calc(1440px - var(--landing-pad) * 2);
   color: var(--text-color);
