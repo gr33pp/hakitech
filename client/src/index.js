@@ -10,7 +10,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import reportWebVitals from "./reportWebVitals";
 import IndexLayout from "./layout/Landing";
-import { FeaturesPage, LandingPage } from "./pages/landing";
+import { AboutPage, FeaturesPage, LandingPage } from "./pages/landing";
 import Auth from "./pages/auth";
 import DashboardLayout from "./layout/Dashboard";
 import Dashboard from "./pages/dashboard";
@@ -32,10 +32,10 @@ const router = createBrowserRouter([
         path: "features",
         element: <FeaturesPage />,
       },
-      // {
-      //   path: "contact",
-      //   element: <></>,
-      // },
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
       {
         path: "login",
         element: <Auth type={"login"} />,

@@ -8,35 +8,37 @@ export const features_data = [
     icon: "visibility",
     title: "Real-Time Monitoring",
     description:
-      "Track energy usage in real-time across all connected devices to stay informed.",
+      "Track solar power generation in real-time across all connected devices to stay informed about your energy production.",
   },
   {
     icon: "lightbulb",
     title: "Personalized Insights",
     description:
-      "Receive tailored recommendations to optimize energy consumption based on your usage.",
+      "Receive tailored recommendations to optimize your solar energy usage based on your generation and consumption patterns.",
   },
   {
     icon: "dashboard",
     title: "User-Friendly Dashboard",
     description:
-      "Navigate an intuitive and visually appealing dashboard that makes managing energy consumption simple",
+      "Navigate an intuitive and visually appealing dashboard that makes managing your solar energy consumption simple.",
   },
   {
     icon: "general_device",
     title: "Remote Access",
     description:
-      "Control and monitor your energy usage from anywhere with our website.",
+      "Control and monitor your solar power system from anywhere with our website.",
   },
   {
     icon: "monitoring",
-    title: "Energy Consumption Analytics",
-    description: "Visualize and optimize energy usage with detailed analytics.",
+    title: "Energy Production Analytics",
+    description:
+      "Visualize and optimize your solar energy production with detailed analytics.",
   },
   {
     icon: "history_edu",
     title: "Historical Data and Reports",
-    description: "Access detailed historical energy usage reports.",
+    description:
+      "Access detailed historical reports on your solar energy generation and usage.",
   },
 ];
 
@@ -53,16 +55,16 @@ export const FollowUp = () => {
   return (
     <>
       <span>
+        Continuously Improve Sustainability
+        <i class="material-symbols-outlined">cycle</i>
+      </span>
+      <span>
         Manage energy efficiently
         <i class="material-symbols-outlined">lightbulb</i>
       </span>
       <span>
         Deploy globally
         <i class="material-symbols-outlined">language</i>
-      </span>
-      <span>
-        Continuously optimize for sustainability
-        <i class="material-symbols-outlined">cycle</i>
       </span>
     </>
   );
@@ -304,13 +306,13 @@ export const usageData = [
     icon: "date_range",
     title: "Realtime energy generated",
     value: "3 MWh",
-    desc: "energy generated",
+    desc: "Realtime data",
   },
   {
     icon: "calendar_month",
     title: "Energy generated",
     value: "45.2 MWh",
-    desc: "Average energy generated",
+    desc: "Total energy generated",
   },
 ];
 

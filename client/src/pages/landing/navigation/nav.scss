@@ -23,11 +23,12 @@
 
     &-title {
       text-transform: capitalize;
-      font-size: clamp(20px, 3vw, 30px);
+      font-size: clamp(20px, 3.5vw, 32px);
       font-weight: 500;
       opacity: 0;
       transform: translateX(-50px);
       animation: slide-in 0.6s forwards;
+      white-space: nowrap;
     }
     > div {
       justify-self: center;
@@ -57,10 +58,11 @@
         column-gap: clamp(30px, 3vw, 50px);
 
         > a {
-          padding: 10px 18px;
+          padding: 11px 18px;
           border-radius: 6px;
           cursor: pointer;
-          @include hover(#797979, 0.5);
+          font-size: 17px;
+          @include hover(#79797ab9, 0.35);
         }
       }
     }

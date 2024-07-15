@@ -41,17 +41,19 @@
       //   grid-template-rows: auto auto auto 1fr;
       h1 {
         margin: 0;
-        font-size: clamp(27px, 4vw, 50px);
+        font-size: clamp(28px, 5.5vw, 50px);
         line-height: 1.6;
       }
-      p {
+      .description {
+        width: clamp(0px, 90%, 600px);
         padding-top: 15px;
         margin: 0;
-        width: 70%;
-        opacity: 0.8;
         justify-self: center;
-        font-size: clamp(12px, 2.4vw, 20px);
+        font-size: clamp(12.5px, 2.8vw, 20px);
         line-height: 1.8;
+        position: relative;
+
+        @include overlay(var(--bg-color), 0.3);
       }
       > i {
         mask-image: linear-gradient(black 60%, transparent 85%);
@@ -76,7 +78,8 @@
         > * {
           border-radius: 10rem !important;
           padding: clamp(10px, 1.4vw, 16px) 34px;
-          font-size: clamp(11px, 2vw, 16px);
+          font-size: clamp(12px, 2.4vw, 16px);
+          font-weight: 600;
         }
       }
     }
@@ -87,7 +90,7 @@
       //   z-index: 0;
       width: 100%;
       height: 100%;
-      background-color: #050503;
+      // background-color: #050503;
       background-size: 100%;
       background-position: bottom;
       background-repeat: no-repeat;
@@ -109,15 +112,14 @@
     > div {
       text-align: center;
       display: inline-block;
-      font-size: clamp(24px, 2vw, 28px);
-      font-weight: 500;
-      line-height: 1.8;
-      max-width: 768px;
+      font-size: clamp(20px, 2vw, 32px);
+      font-weight: 600;
+      line-height: 1.6;
+      max-width: 720px;
 
       i {
         padding: 0 8px 0 8px;
         transform: translateY(18%);
-        // background-color: red;
         font-size: clamp(26px, 2vw, 30px);
         max-width: 50px;
         overflow: hidden;
@@ -130,6 +132,43 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
   }
+
+  .about {
+    & {
+      display: grid;
+      row-gap: var(--landing-pad);
+    }
+    &-hero {
+      > div {
+        min-height: clamp(350px, 50vw, 560px);
+        &::after {
+          background-image: url("https://transparenttextures.com/patterns/asfalt-light.png");
+        }
+        @include overlay(var(--bg-color), 0.6);
+      }
+      .description {
+        width: clamp(0px, 90%, 680px);
+        font-size: clamp(13px, 3.2vw, 22px);
+      }
+      &-desc {
+        padding-top: 40px;
+        strong {
+          position: relative;
+          z-index: 10;
+        }
+      }
+    }
+    h1 {
+      font-weight: 800;
+      font-size: clamp(20px, 6.4vw, 52px);
+      line-height: 1.4;
+      letter-spacing: -0.2px;
+    }
+
+    .dashboard-card {
+      row-gap: 0px;
+    }
+  }
 }
 
 .features {
@@ -137,8 +176,10 @@
     display: grid;
     border: 1px solid #ffffff25;
     border-radius: 10px;
-    padding: 20px 20px 10px;
+    padding: 20px;
     gap: 10px;
+    align-content: space-between;
+    // grid-template-rows: auto clamp(80px, auto, 100px) 1fr;
     > * {
       margin: 0;
     }
@@ -154,9 +195,9 @@
     }
     p {
       opacity: 0.95;
-      max-width: 400px;
-      font-size: clamp(18px, 1vw, 24px);
-      line-height: 1.4;
+      max-width: 450px;
+      font-size: clamp(18px, 1.4vw, 24px);
+      line-height: 1.5;
       font-weight: 500;
     }
     img {
@@ -198,6 +239,15 @@
   .landing {
     &-features {
       grid-template-columns: repeat(2, 1fr);
+    }
+    &-followup {
+      > div {
+        span {
+          &:nth-child(2) {
+            white-space: nowrap;
+          }
+        }
+      }
     }
   }
 }

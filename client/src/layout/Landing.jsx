@@ -17,8 +17,8 @@ const IndexLayout = () => {
     switch (location.pathname) {
       case "/features":
         return <LandingPageNav title={"features"} />;
-      case "/contact":
-        return <LandingPageNav title={"contact"} />;
+      case "/about":
+        return <LandingPageNav title={"about us"} />;
       case "/login":
         return <LandingPageNav login />;
       case "/signup":
