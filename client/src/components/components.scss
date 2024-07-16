@@ -5,13 +5,18 @@
   --value-size: clamp(30px, 3.5vw, 52px);
   --usage-card-columns: repeat(auto-fit, minmax(clamp(0px, 90vw, 320px), 1fr));
   --loadin-timming-func: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --about-card-columns: repeat(3, 1fr);
+  --about-card-item-border: 1px;
+  --about-card-border: 0;
+  --about-card-gap: 0px;
+  --about-card-align: left;
 }
 
 // Button
 .button {
   & {
     background-color: var(--text-color);
-    padding: 9px 24px;
+    padding: 10px 24px;
     font-family: inherit;
     font-weight: 500;
     border-radius: 4px;
@@ -190,7 +195,7 @@
       --icon-display: none;
       --usage-card-columns: repeat(
         auto-fit,
-        minmax(clamp(120px, 30vw, 300px), 1fr)
+        minmax(clamp(120px, 30vw, 280px), 1fr)
       );
       column-gap: 16px;
 
@@ -202,13 +207,19 @@
         }
         &-item {
           row-gap: 10px;
-          font-size: clamp(8px, 1vw, 16px);
-          word-break: nowrap;
-          white-space: nowrap;
+          font-size: clamp(9.4px, 1vw, 16px);
+          font-weight: 500;
+          > div {
+            &:nth-child(2) {
+              word-break: nowrap;
+              white-space: nowrap;
+            }
+          }
         }
         & {
           outline: 1px solid #ffffff25;
           min-height: 90px;
+          // align-content: center;
           height: 100%;
           padding: 10px 20px;
         }
@@ -219,6 +230,7 @@
         background: url("https://transparenttextures.com/patterns/asfalt-light.png");
         outline: 1px solid #ffffff25;
         @include overlay(var(--bg-color), 0.7);
+        max-height: 28vw;
 
         &:first-child {
         }
@@ -239,7 +251,7 @@
         padding: 30px;
         border-radius: 10px;
         height: 180px;
-        margin: 0 5px;
+        // margin: 0;
 
         &-icon {
           display: var(--icon-display);
@@ -288,6 +300,59 @@
   }
 }
 
+.about {
+  &-card {
+    display: grid;
+    grid-template-columns: var(--about-card-columns);
+    gap: calc(var(--landing-pad) + var(--about-card-gap));
+    align-items: center;
+    justify-content: center;
+    // padding-bottom: calc(var(--landing-pad) * 1.5);
+    border: var(--about-card-border) solid #ffffff25;
+    padding: var(--about-card-gap) 0;
+    border-radius: 10px;
+    // background-color: var(--bg-color-alt);
+    // backdrop-filter: blur(3.5px) saturate(50%);
+
+    &-item {
+      padding: 30px;
+      border-radius: 10px;
+      border: var(--about-card-item-border) solid #ffffff25;
+      display: grid;
+      row-gap: 10px;
+      text-align: var(--about-card-align);
+      height: calc(100% - 62px);
+      grid-template-rows: 50px auto;
+    }
+
+    &-icon {
+      .material-symbols-rounded {
+        font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 40;
+        color: var(--text-color);
+        font-size: 38px;
+      }
+    }
+
+    &-content {
+      display: inline-block;
+
+      font-weight: 600;
+      font-size: clamp(16px, 2.5vw, 24px);
+
+      span {
+        & {
+          opacity: 0.7;
+        }
+        &:first-child {
+          padding-right: 6px;
+          z-index: 2;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 820px) and (min-width: 730px) {
   :root {
     --icon-display: none;
@@ -296,6 +361,16 @@
 @media screen and (max-width: 1240px) and (min-width: 920px) {
   :root {
     --icon-display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --about-card-columns: 1fr;
+    --about-card-align: center;
+    --about-card-item-border: 0px;
+    --about-card-border: 1px;
+    --about-card-gap: 24px;
   }
 }
 

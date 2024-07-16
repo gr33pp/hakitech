@@ -19,6 +19,7 @@
   transition: 0.3s cubic-bezier(0.46, 0.14, 0.015, 1.095) transform;
   transform: translateX(var(--d-translatex));
   background-color: var(--bg-color);
+  font-family: "Poppins", sans-serif;
 
   &-content {
     overflow-y: auto;
@@ -304,7 +305,7 @@
     > div {
       padding: 20px;
       min-width: none;
-      font-size: clamp(12px, 2.5vw, 16px);
+      font-size: clamp(14px, 2.5vw, 16px);
       line-height: 1.8;
       justify-content: start;
 
@@ -327,12 +328,12 @@
     &-setup {
       grid-template-columns: 5fr 6fr;
       > div {
-        font-size: clamp(10px, 2.5vw, 100%);
+        font-size: clamp(12px, 2.5vw, 100%);
         &:last-child {
           grid-column: span 2;
         }
         .icon {
-          font-size: clamp(18px, 2.5vw, 16px);
+          font-size: clamp(18px, 2.5vw, 24px);
         }
       }
     }
@@ -351,7 +352,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   :root {
     --d-pad-top: 30px;
     --d-pad-x: clamp(0px, 2vw, 20px);
@@ -381,6 +382,10 @@
       grid-template-columns: calc(100% - 5px);
       grid-template-rows: repeat(2, auto);
       row-gap: var(--d-pad-top);
+
+      .weather {
+        height: 230px;
+      }
     }
     &-balance {
       .balance {
@@ -394,7 +399,7 @@
   }
 }
 
-@media screen and (max-width: 1640px) and (min-width: 769px) {
+@media screen and (max-width: 1640px) and (min-width: 768px) {
   .dashboard {
     --d-pad-x: clamp(0px, 1vw, 30px);
     width: calc(100vw + 350px);

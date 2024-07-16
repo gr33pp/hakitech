@@ -18,7 +18,7 @@ export default function LandingPageNav({ title, login, signup }) {
             <>
               <Link to="">Home</Link>
               <Link to="features">Features</Link>
-              <Link to="signup">Sign up</Link>
+              <Link to="about">About us</Link>
             </>
           )}
         </div>

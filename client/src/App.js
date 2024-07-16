@@ -1,20 +1,8 @@
-// import "./App.scss";
-// import LandingPage from "./pages/landing";
-// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Component } from "./charts";
+// import "./index.scss";
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <LandingPage />,
-//   },
-// ]);
+function App() {
+  return <Component />;
+}
 
-// function App() {
-//   return (
-//     <div className="container">
-//       <RouterProvider router={router} />
-//     </div>
-//   );
-// }
-
-// export default App;
+export default App;

@@ -13,12 +13,14 @@ const IndexLayout = () => {
     location.pathname !== "/signup" &&
     location.pathname !== "/reset";
 
+  const aboutCondition = location.pathname === "/about";
+
   const renderHeader = () => {
     switch (location.pathname) {
       case "/features":
         return <LandingPageNav title={"features"} />;
-      case "/contact":
-        return <LandingPageNav title={"contact"} />;
+      case "/about":
+        return <LandingPageNav title={"about us"} />;
       case "/login":
         return <LandingPageNav login />;
       case "/signup":
@@ -35,7 +37,7 @@ const IndexLayout = () => {
   }, [location.pathname]);
 
   return (
-    <div className="landing">
+    <div className={`landing ${aboutCondition ? "about" : ""}`}>
       {renderHeader()}
       <Outlet />
       {AuthCondition && (
