@@ -371,7 +371,34 @@ export const setupInfo = [
 ];
 
 export const aboutFeatures = [
-  { title: "Effortless", description: "Simple and convenient solar energy harnessing.", icon: "wb_sunny" },
-  { title: "Global", description: "Access and control your solar energy system from anywhere.", icon: "public" },
-  { title: "Inclusive", description: "Intuitive experience for all solar energy users.", icon: "accessibility" },
+  {
+    title: "Effortless.",
+    description: "Simple and convenient solar energy harnessing.",
+    icon: "wb_sunny",
+  },
+  {
+    title: "Global.",
+    description: "Access and control your solar energy system from anywhere.",
+    icon: "language",
+  },
+  {
+    title: "Inclusive.",
+    description: "Intuitive experience for all solar energy users.",
+    icon: "accessibility_new",
+  },
+];
+
+export const aboutSections = [
+  {
+    title: "Mission",
+    statement:
+      "Our mission is to empower individuals and communities to maximize the potential of solar energy. By leveraging innovative technology and insightful tools, we aim to deliver sustainable solutions that foster clean energy adoption and contribute to a greener world.",
+    icon: "bolt",
+  },
+  {
+    title: "Vision",
+    statement:
+      "Our vision is to create a sustainable future where clean and renewable solar energy is the primary power source. We strive to drive economic growth, improve energy accessibility, and enhance environmental stewardship with advanced solar energy solutions.",
+    icon: "visibility",
+  },
 ];

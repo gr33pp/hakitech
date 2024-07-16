@@ -1,6 +1,12 @@
 import "./landing.scss";
 import Button from "@/components/button";
-import { aboutFeatures, features_data, FollowUp, images } from "../../utils";
+import {
+  aboutFeatures,
+  aboutSections,
+  features_data,
+  FollowUp,
+  images,
+} from "../../utils";
 import { useNavigate } from "react-router-dom";
 import { DashboardCard } from "../dashboard";
 
@@ -8,9 +14,9 @@ export function LandingPage() {
   return (
     <>
       <LandingPageHero
-        title={"Revolutionize Energy Management."}
+        title={"Transform Solar Energy Management."}
         description={
-          " Explore innovative solutions for sustainable living and smarter energy consumption with our cutting-edge technology."
+          "Discover innovative solutions for sustainable living and efficient solar energy use with our advanced technology."
         }
         imageBg
         image
@@ -121,7 +127,7 @@ export const AboutPage = () => {
     </div>
   );
   return (
-    <div className="about">
+    <>
       <div className="about-hero">
         <LandingPageHero
           title={"Hakitech empowers users to harness solar energy efficiently."}
@@ -131,6 +137,11 @@ export const AboutPage = () => {
       <div className="about-card">
         {aboutFeatures.map((feature, index) => (
           <AboutCard key={index} {...feature} />
+        ))}
+      </div>
+      <div className="about-sections">
+        {aboutSections.map((section, index) => (
+          <AboutSections key={index} {...section} />
         ))}
       </div>
       {/* <DashboardCard title={"Our Mission"}>
@@ -155,7 +166,7 @@ export const AboutPage = () => {
         Join us on our mission to create a more sustainable world for future
         generations. Together, we can make a difference.
       </p> */}
-    </div>
+    </>
   );
 };
 
@@ -163,12 +174,23 @@ const AboutCard = ({ title, description, icon }) => {
   return (
     <div className="about-card-item">
       <div className="about-card-icon">
-        <span class="material-symbols-outlined">{icon}</span>
+        <span class="material-symbols-rounded">{icon}</span>
       </div>
       <div className="about-card-content">
         <span>{title}</span>
         <span>{description}</span>
       </div>
+    </div>
+  );
+};
+
+const AboutSections = ({ title, statement, icon }) => {
+  return (
+    <div className="about-section">
+      <h2>{title}</h2>
+      <span>
+        <p>{statement}</p>
+      </span>
     </div>
   );
 };

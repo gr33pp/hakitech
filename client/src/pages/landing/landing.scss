@@ -3,6 +3,7 @@
 :root {
   --landing-pad: clamp(20px, 5%, 50px);
   --landing-pad-top: clamp(140px, 10%, 160px);
+  --about-sections-column: 1fr 1fr;
 }
 
 .landing {
@@ -12,7 +13,7 @@
   gap: 40px;
   width: 100vw;
   justify-self: center;
-  padding: clamp(95px, var(--landing-pad-top), 1200px) (var(--landing-pad)) 0;
+  padding: clamp(95px, var(--landing-pad-top), 140px) (var(--landing-pad)) 0;
   width: calc(100% - var(--landing-pad) * 2);
   max-width: calc(1440px - var(--landing-pad) * 2);
   color: var(--text-color);
@@ -134,11 +135,13 @@
   }
 
   .about {
-    & {
-      max-width: 100%;
-      display: grid;
-      row-gap: var(--landing-pad);
-    }
+    // & {
+    //   max-width: 100%;
+    //   display: grid;
+    //   row-gap: var(--landing-pad);
+    //   // padding-bottom: var(--landing-pad);
+    //   grid-auto-flow: row;
+    // }
     &-hero {
       > :first-child {
         min-height: clamp(350px, 50vw, 560px);
@@ -164,6 +167,36 @@
       font-size: clamp(20px, 6.4vw, 52px);
       line-height: 1.4;
       letter-spacing: -0.2px;
+    }
+    &-sections {
+      display: grid;
+      row-gap: var(--landing-pad);
+      column-gap: clamp(20px, 5vw, 100px);
+      text-align: center;
+      grid-template-columns: var(--about-sections-column);
+      max-width: 980px;
+      justify-self: center;
+      padding: 30px 0;
+    }
+    &-section {
+      display: grid;
+      row-gap: var(--landing-pad);
+      grid-template-rows: auto 1fr;
+      h2 {
+        font-size: clamp(28px, 3vw, 36px);
+        margin: 0;
+      }
+      > :last-child {
+        padding: 10px clamp(20px, 3.5vw, 28px);
+        border: 1px solid #ffffff25;
+        border-radius: 10px;
+        line-height: 1.7;
+        display: grid;
+        justify-content: center;
+
+        p {
+        }
+      }
     }
   }
 }
@@ -252,6 +285,7 @@
 @media screen and (max-width: 768px) {
   :root {
     --landing-pad: 8px;
+    --about-sections-column: 1fr;
   }
   .landing {
     row-gap: 10px;
