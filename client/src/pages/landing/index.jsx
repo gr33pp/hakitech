@@ -1,6 +1,6 @@
 import "./landing.scss";
 import Button from "@/components/button";
-import { features_data, FollowUp, images } from "../../utils";
+import { aboutFeatures, features_data, FollowUp, images } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import { DashboardCard } from "../dashboard";
 
@@ -128,6 +128,11 @@ export const AboutPage = () => {
           description={description()}
         />
       </div>
+      <div className="about-card">
+        {aboutFeatures.map((feature, index) => (
+          <AboutCard key={index} {...feature} />
+        ))}
+      </div>
       {/* <DashboardCard title={"Our Mission"}>
         <p>
           Hakitech is a technology company that specializes in energy management
@@ -150,6 +155,20 @@ export const AboutPage = () => {
         Join us on our mission to create a more sustainable world for future
         generations. Together, we can make a difference.
       </p> */}
+    </div>
+  );
+};
+
+const AboutCard = ({ title, description, icon }) => {
+  return (
+    <div className="about-card-item">
+      <div className="about-card-icon">
+        <span class="material-symbols-outlined">{icon}</span>
+      </div>
+      <div className="about-card-content">
+        <span>{title}</span>
+        <span>{description}</span>
+      </div>
     </div>
   );
 };

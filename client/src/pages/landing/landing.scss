@@ -135,11 +135,12 @@
 
   .about {
     & {
+      max-width: 100%;
       display: grid;
       row-gap: var(--landing-pad);
     }
     &-hero {
-      > div {
+      > :first-child {
         min-height: clamp(350px, 50vw, 560px);
         &::after {
           background-image: url("https://transparenttextures.com/patterns/asfalt-light.png");
@@ -163,10 +164,6 @@
       font-size: clamp(20px, 6.4vw, 52px);
       line-height: 1.4;
       letter-spacing: -0.2px;
-    }
-
-    .dashboard-card {
-      row-gap: 0px;
     }
   }
 }

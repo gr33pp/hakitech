@@ -369,3 +369,9 @@ export const setupInfo = [
     icon: "battery_status_good",
   },
 ];
+
+export const aboutFeatures = [
+  { title: "Effortless", description: "Simple and convenient solar energy harnessing.", icon: "wb_sunny" },
+  { title: "Global", description: "Access and control your solar energy system from anywhere.", icon: "public" },
+  { title: "Inclusive", description: "Intuitive experience for all solar energy users.", icon: "accessibility" },
+];
