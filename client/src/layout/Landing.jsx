@@ -22,7 +22,7 @@ const IndexLayout = () => {
       case "/about":
         return <LandingPageNav title={"about us"} />;
       case "/login":
-        return <LandingPageNav login />;
+        return <LandingPageNav login quickAction />;
       case "/signup":
         return <LandingPageNav signup />;
       // case "/reset":

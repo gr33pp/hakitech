@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Hakitech
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hakitech empowers users to harness solar energy efficiently. By providing real-time monitoring, personalized insights, and a user-friendly dashboard, Hakitech aims to optimize energy consumption and promote sustainable energy practices. This project is designed to help users manage and maximize their solar energy usage, contributing to a greener and more sustainable future.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+Follow these instructions to set up and run the project on your local machine.
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ensure you have the following software installed:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Node.js (version 14.x or higher)
+- npm (version 6.x or higher) or yarn (version 1.x or higher)
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the Repository:**
 
-### `npm run build`
+   ```bash
+   git clone https://github.com/gr33pp/hakitech.git
+   cd hakitech
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Create a `.env` File:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   In the root directory of the project, create a `.env` file.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Copy the Example Environment Variables:**
 
-### `npm run eject`
+   Copy the contents of the `.env.example` file into your newly created `.env` file and replace the placeholder values with your actual configuration.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```plaintext
+   REACT_APP_WEATHER_API_KEY=your-weather-api-key-here
+   REACT_APP_WEATHER_API_URL=https://your-weather-api-url-here.com
+   REACT_APP_API_URL=https://your-api-url-here.com
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Install Dependencies:**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   Install the required dependencies using npm or yarn.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-## Learn More
+5. **Run the Development Server:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   Start the development server to view your project locally.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   npm start
+   # or
+   yarn start
+   ```
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+To deploy the project to a live environment, follow these steps:
 
-### `npm run build` fails to minify
+1. **Build the Project:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```bash
+   npm run build
+   # or
+   yarn build
+   ```
+
+   This will create an optimized production build in the `build` directory.
+
+2. **Deploy the `build` Directory:**
+
+   Deploy the contents of the `build` directory to your preferred hosting service (e.g., Netlify, Vercel, GitHub Pages).
+
+### Built With
+
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Sass](https://sass-lang.com/) - A CSS preprocessor that adds power and elegance to the basic language
+
+### License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### Acknowledgments
+
+Thanks to everyone who contributed to this project and to the open-source community for their invaluable resources and support.
