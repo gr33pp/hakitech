@@ -20,6 +20,7 @@ export function LandingPage() {
         }
         imageBg
         image
+        action
       />
       <LandingFollowUp>
         <FollowUp />
