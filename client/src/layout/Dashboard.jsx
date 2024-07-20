@@ -54,7 +54,7 @@ const DashboardLayout = () => {
     setMenu(false);
   }, [location.pathname, setMenu]);
 
-  if (isAuthenticated()) {
+  if (!isAuthenticated()) {
     return <Navigate to="/login" message={"You have to sign in first"} />;
   } else {
     return (
