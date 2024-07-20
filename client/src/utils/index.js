@@ -306,7 +306,7 @@ export const usageData = [
   },
   {
     icon: "date_range",
-    title: "This Month Usage",
+    title: "Monthly Usage",
     value: "150.2 kWh",
     desc: "Average monthly usage",
     path: "monthly",

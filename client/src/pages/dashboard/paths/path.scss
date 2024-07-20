@@ -35,7 +35,9 @@
     // align-self: last baseline;
     display: grid;
     align-items: last baseline;
-    max-height: 640px;
+    min-height: clamp(0px, calc(100dvh - 500px), 650px);
+    // height: 100%;
+    max-height: 720px;
     // align-self: last baseline;
   }
 
