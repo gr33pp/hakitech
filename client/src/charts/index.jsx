@@ -1,69 +1,159 @@
-"use client";
-
-import { TrendingUp } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-
+import { energyUsage } from "@/utils";
+import React, { useEffect, useState } from "react";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-];
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { Tally1 } from "lucide-react";
+import "./chart.scss";
+import { useSearchParams } from "react-router-dom";
 
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "var(--text-color)",
-  },
-};
+export default function UsageChart() {
+  const [data, setData] = useState([]);
+  const [searchParams] = useSearchParams();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const _filter = searchParams.get("filter") || "hourly";
+  // const [filter, setFilter] = useState("hourly");
 
-export function Component() {
+  useEffect(() => {
+    const filter = energyUsage.filter(
+      (item) => item.period.toLowerCase() === _filter.toLowerCase()
+    );
+    // setFilter(_filter);
+    const mappedFilter = filter.map((item) => item.usage)[0];
+
+    setData(mappedFilter);
+    // setData(usageData);
+  }, [_filter]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const interval = windowWidth < 600 ? 1 : 0;
+
   return (
-    <ChartContainer config={chartConfig} style={{ height: "400px" }}>
-      <AreaChart
-        accessibilityLayer
-        data={chartData}
-        margin={{
-          left: 12,
-          right: 12,
-        }}
+    <div className="chart">
+      <ResponsiveContainer
+        width={"100%"}
+        height={"100%"}
+        minHeight={380}
+        maxHeight={windowWidth < 768 ? 500 : 620}
       >
-        <CartesianGrid vertical={false} />
-        <XAxis
-          dataKey="month"
-          tickLine={false}
-          axisLine={false}
-          tickMargin={8}
-          tickFormatter={(value) => value.slice(0, 3)}
-        />
-        <ChartTooltip
-          cursor={true}
-          content={<ChartTooltipContent indicator="dot" />}
-        />
-        <Area
-          dataKey="desktop"
-          type="bumpX"
-          fill="var(--color-desktop)"
-          fillOpacity={0.15}
-          stroke="var(--color-desktop)"
-        />
-      </AreaChart>
-    </ChartContainer>
+        <AreaChart
+          width={730}
+          height={250}
+          data={data}
+          margin={{ right: 24, left: 30, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="3%"
+                stopColor="var(--text-color)"
+                stopOpacity={0.16}
+              />
+              <stop
+                offset="95%"
+                stopColor="var(--text-color)"
+                stopOpacity={0}
+              />
+            </linearGradient>
+          </defs>
+          <XAxis
+            dataKey="key"
+            tick={(props) => (
+              <CustomizedAxisTick {...props} split={_filter === "monthly"} />
+            )}
+            tickLine={false}
+            axisLine={false}
+            interval={interval}
+            // begin={1}
+          />
+          {/* <YAxis /> */}
+          <CartesianGrid
+            strokeDasharray="4"
+            vertical={false}
+            stroke="var(--text-color)"
+            strokeOpacity={0.1}
+          />
+          <Tooltip
+            cursor={{
+              stroke: "var(--text-color)",
+              strokeWidth: 0.5,
+              opacity: 0.25,
+            }}
+            contentStyle={{
+              backgroundColor: "var(--bg-color)",
+              border: "none",
+              color: "var(--text-color)",
+              fontSize: 12,
+            }}
+            content={customTooltip}
+          />
+          <Area
+            type="natural"
+            dataKey="value"
+            stroke="var(--text-color)"
+            strokeLinecap="round"
+            strokeOpacity={0.7}
+            strokeWidth={2}
+            fillOpacity={0.8}
+            fill="url(#colorPv)"
+            activeDot={{ r: 4, fill: "var(--text-color)", stroke: "none" }}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
+
+const CustomizedAxisTick = (props) => {
+  const { x, y, payload, split } = props;
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        dy={16}
+        fill="var(--text-color)"
+        opacity={0.6}
+        fontSize={12}
+        textAnchor="middle"
+      >
+        {split ? payload.value.substring(0, 3) : payload.value}
+      </text>
+    </g>
+  );
+};
+
+const customTooltip = (props) => {
+  const { active, payload, label } = props;
+  if (active) {
+    return (
+      <div className="custom-tooltip">
+        <Tally1 size={70} strokeWidth={1.2} fill="var(--text-color)" />
+        <div>
+          <span>{label}</span>
+          <span className="label">Usage</span>
+          <span className="label">{payload[0].value}kWh</span>
+        </div>
+      </div>
+    );
+  }
+  return null;
+};

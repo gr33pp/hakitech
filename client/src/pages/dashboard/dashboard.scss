@@ -10,6 +10,7 @@
   --view-all-size: clamp(12.5px, 0.8vw, 16px);
   --weather-display: grid;
   --mobile-tip: grid;
+  --d-container-pad-y: clamp(30px, calc((var(--d-pad-x) + 18px) / 2), 60px);
   //   -d-bg:
 }
 .dashboard {
@@ -31,8 +32,15 @@
     align-content: start;
     transform: translateX(var(--d-container-translatex));
     transition: 0.3s cubic-bezier(0.46, 0.14, 0.015, 1.095) transform;
-    @include overlay(var(--bg-color), 0.5);
+    // @include overlay(var(--bg-color), 0.5);
+    > :first-child {
+      align-self: start;
+    }
 
+    &:has(.usage) {
+      grid-template-rows: auto 1fr;
+      //   align-content: start;
+    }
     &::after {
       z-index: var(--d-content-index);
     }
@@ -179,13 +187,17 @@
 
   &-container {
     display: grid;
-    padding: clamp(30px, calc((var(--d-pad-x) + 18px) / 2), 60px)
+    padding: var(--d-container-pad-y)
       calc(var(--d-pad-x) + clamp(10px, 1.4vw, 42px));
-    row-gap: clamp(30px, calc((var(--d-pad-x) + 18px) / 2), 60px);
+    row-gap: var(--d-container-pad-y);
     max-height: 100dvh;
-    overflow: auto;
+    overflow-y: auto;
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    &:has(.usage) {
+      min-height: calc(100% - (var(--d-container-pad-y) * 2));
     }
 
     > :nth-child(4) {

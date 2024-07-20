@@ -295,18 +295,21 @@ export const usageData = [
     title: "Today Usage",
     value: "12.5 kWh",
     desc: "Average daily usage",
+    path: "hourly",
   },
   {
     icon: "weekend",
     title: "This Week Usage",
     value: "87.5 kWh",
     desc: "Average weekly usage",
+    path: "daily",
   },
   {
     icon: "date_range",
-    title: "Realtime energy generated",
-    value: "3 MWh",
-    desc: "Realtime data",
+    title: "This Month Usage",
+    value: "150.2 kWh",
+    desc: "Average monthly usage",
+    path: "monthly",
   },
   {
     icon: "calendar_month",
@@ -402,3 +405,50 @@ export const aboutSections = [
     icon: "visibility",
   },
 ];
+export const energyUsage = [
+  {
+    period: "Hourly",
+    usage: [
+      { key: "12:00 PM", value: 3.2 },
+      { key: "2:00 PM", value: 4.8 },
+      { key: "3:00 PM", value: 6.5 },
+      { key: "1:00 PM", value: 2.9 },
+      { key: "5:00 PM", value: 4.9 },
+      { key: "4:00 PM", value: 4.5 },
+      { key: "6:00 PM", value: 2.0 },
+    ],
+  },
+  {
+    period: "Daily",
+    usage: [
+      { key: "01/10", value: 50.2 },
+      { key: "02/10", value: 35.5 },
+      { key: "03/10", value: 28.7 },
+      { key: "05/10", value: 49.8 },
+      { key: "04/10", value: 52.1 },
+      { key: "06/10", value: 39.3 },
+      { key: "07/10", value: 50.9 },
+    ],
+  },
+  {
+    period: "Monthly",
+    usage: [
+      { key: "January", value: 500.2 },
+      { key: "February", value: 1450.5 },
+      { key: "March", value: 900.7 },
+      { key: "April", value: 1550.3 },
+      { key: "May", value: 1500.6 },
+      { key: "June", value: 2020.9 },
+      { key: "July", value: 1005.1 },
+      { key: "August", value: 1200.3 },
+      { key: "September", value: 1800.2 },
+      { key: "October", value: 900.5 },
+      { key: "November", value: 1100.8 },
+      { key: "December", value: 950.4 },
+    ],
+  },
+];
+
+export function getPathname() {
+  return window.location.pathname;
+}
