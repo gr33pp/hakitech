@@ -1,8 +1,8 @@
-import { Component } from "./charts";
-// import "./index.scss";
+// import { Component } from "./charts";
+// // import "./index.scss";
 
-function App() {
-  return <Component />;
-}
+// function App() {
+//   return <Component />;
+// }
 
-export default App;
+// export default App;

@@ -1,8 +1,58 @@
+@import "@/utils/_mixins.scss";
+
 .payments {
   display: grid;
   row-gap: 20px;
 
   > div {
     padding: 20px;
+  }
+}
+.usage {
+  display: grid;
+  row-gap: clamp(30px, (var(--d-pad-x) + 18px) / 2, 60px);
+  max-width: 100%;
+  row-gap: clamp(30px, 4vw, 60px);
+  // align-content: start !important;
+  grid-template-rows: auto 1fr;
+  max-height: 100dvh;
+  align-content: space-between;
+  // overflow: hidden;
+  > :first-child {
+    margin: 0 -5px;
+    padding: 2px 10px;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10px,
+      black calc(100% - 10px),
+      transparent
+    );
+  }
+
+  > :last-child {
+    // background-color: red;
+    // align-self: last baseline;
+    display: grid;
+    align-items: last baseline;
+    min-height: clamp(0px, calc(100dvh - 500px), 650px);
+    // height: 100%;
+    max-height: 720px;
+    // align-self: last baseline;
+  }
+
+  > * {
+    overflow: auto;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .usage-card {
+    transition: 0.3s ease;
+    &#current {
+      background-color: #80808020;
+    }
   }
 }

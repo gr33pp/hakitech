@@ -5,13 +5,17 @@ import { notifications } from "../../../utils";
 import { NotificationsCard } from "../navigation";
 import "./path.scss";
 import { UserContext } from "@/context";
+import UsageChart from "@/charts";
 
-export const Usage = () => {
+export const Usage = ({ filter }) => {
   return (
-    <div className="card-usage path">
-      {usageData.map((data, i) => (
-        <DashboardUsageCardItem key={i} {...data} />
-      ))}
+    <div className="usage">
+      <div className="card-usage path dashboard-usage">
+        {usageData.map((data, i) => (
+          <DashboardUsageCardItem key={i} {...data} />
+        ))}
+      </div>
+      <UsageChart _filter={filter || "hourly"} />
     </div>
   );
 };

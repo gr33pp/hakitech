@@ -15,6 +15,7 @@ export const UserProvider = ({ children }) => {
   const [menu, setMenu] = useState(false);
   const [profile, setProfile] = useState(false);
   const [weather, setWeather] = useState(false);
+  const [filter, setFilter] = useState("hourly");
   // const [isActive, setIsActive] = useState(true);
 
   // localStorage.removeItem("authToken");
@@ -55,6 +56,8 @@ export const UserProvider = ({ children }) => {
         setup: setupInfo,
         // isActive,
         // setIsActive,
+        filter,
+        setFilter,
       }}
     >
       {children}

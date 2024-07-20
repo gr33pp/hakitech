@@ -7,7 +7,12 @@ import {
   SetPropertyForMenu,
   usageData,
 } from "../../utils";
-import { Link, useLocation } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { NotificationsCard, TipCard } from "./navigation";
 
 export default function Dashboard() {
@@ -143,10 +148,19 @@ export const DashboardUsageCardItem = ({
   title,
   value,
   desc,
+  path,
   ...props
 }) => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const filter = searchParams.get("filter") || "hourly";
+  const [isCurrent, setIsCurrent] = useState(false);
   return (
-    <div className="usage-card">
+    <div
+      className="usage-card"
+      id={filter === path ? "current" : ""}
+      onClick={() => path && navigate(`?filter=${path}`)}
+    >
       <div className="usage-card-icon">
         <span class="material-symbols-rounded">{icon}</span>
       </div>
